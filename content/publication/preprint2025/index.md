@@ -41,7 +41,7 @@ featured: true
 
 links:
  - name: Custom Link
-   url: http://dx.doi.org/10.2139/ssrn.5152665
+ - url: http://dx.doi.org/10.2139/ssrn.5152665
 # url_pdf: http://arxiv.org/pdf/1512.04133v1
  url_code: 'https://github.com/many-economists/analysis'
  url_dataset: 'https://github.com/many-economists/analysis'
