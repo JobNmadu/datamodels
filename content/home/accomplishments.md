@@ -68,4 +68,14 @@ date_format = "Jan 2006"
   date_end = "2019-04-29"
   description = ""
 
+[[item]]
+  organization = "AD Scientific Index"
+  organization_url = "https://www.adscientificindex.com/"
+  title = "World Scientist and University Rankings"
+  url = ""
+  certificate_url = "https://www.adscientificindex.com/scientist-print/100132/"
+  date_start = "2013-10-01"
+  date_end = ""
+  description = ""
+
 +++
