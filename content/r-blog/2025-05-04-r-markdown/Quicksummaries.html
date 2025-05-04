@@ -1,0 +1,177 @@
+---
+title: "Quicksummary of data for modeling and Machine Learning"
+output:
+  prettydoc::html_pretty:
+    theme: cayman #tactile, architect, leonids, hpstr
+    highlight: vignette #github
+    math: katex #latex
+  html_document: default
+  word_document: default
+  pdf_document: 
+    latex_engine: xelatex
+description: |
+  This blog is about `quicksummary` function in my R package `Dyn4cast`. This function provides the most important overview of data before modeling and Machine Learning in a one line of code technology!
+author:
+  - name: Job Nmadu
+    url: https://jobnmadu.com/
+categories:
+  - R
+date: "2025-05-04T01:00:00Z"
+tags: [RStats, Central tedencies, Means, Data Science, Machine Learning]
+---
+
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>This blog is about the improved function, <code>quicksummary</code> in the <code>Dyn4cast</code> package. The function provides quick overview of data and particularly outputting five different means.</p>
+<p>Observational study involves procuring large mass of data for analysis and modeling. So, there is always need to have an overview of the data to decide on the appropriate analysis to be undertaken. This is where this function is unique because five different means are computed simultaneously, in spite of the <em>one line code</em> arguments. The five means are:</p>
+<p>Arithmetic</p>
+<p>Geometric</p>
+<p>Harmonic</p>
+<p>Quadratic</p>
+<p>Cubic.</p>
+<p>The basic usage of the codes are:</p>
+<p><code>quicksummary(x, Type, Cut, Up, Down, ci = 0.95)</code></p>
+<p><strong>Arguments</strong></p>
+<p><code>x</code> The data to be summarised. Only numeric data is allowed.</p>
+<p><code>Type</code> The type of data to be summarized. There are two options here 1 or 2, 1 = Continuous and 2 = Likert-type</p>
+<p><code>Cut</code> The cut-off point for Likert-type data</p>
+<p><code>Up</code> The top Likert-type scale, for example, Agree, Constraints etc which would appear in the remark column.</p>
+<p><code>Down</code> The lower Likert-type scale, for example, Disagree, ⁠Not a Constraint⁠ etc which would appear in the remark column.</p>
+<p><code>ci</code> Confidence interval which is defaults to 0.95.</p>
+<p>Let us go!</p>
+</div>
+<div id="load-library" class="section level1">
+<h1>Load library</h1>
+<pre class="r"><code>library(Dyn4cast)</code></pre>
+</div>
+<div id="computation-of-data-summaries" class="section level1">
+<h1>Computation of data summaries</h1>
+<pre class="r"><code>Up &lt;- &quot;Constraint&quot;
+Down &lt;- &quot;Not a constraint&quot;
+sum1 &lt;- quicksummary(x = Quicksummary, Type = 2, Cut = 2.60, Up = Up, Down = Down)
+
+# Continuous data
+x &lt;- select(linearsystems, 1:6)
+sum2 &lt;- quicksummary(x = x, Type = 1)</code></pre>
+<div id="likert-type-summaries" class="section level2">
+<h2>Likert-type summaries</h2>
+<div id="general-summaries" class="section level3">
+<h3>General summaries</h3>
+<pre class="r"><code>sum1$Summary</code></pre>
+<pre><code>                 Mean   SD SE.Mean Nobs Rank           Remark
+Likert scores 1  4.34 1.13    0.11  103    1       Constraint
+Likert scores 14 3.85 1.35    0.13  103    2       Constraint
+Likert scores 3  3.49 1.36    0.13  103    3       Constraint
+Likert scores 10 3.49 1.51    0.15  103    4       Constraint
+Likert scores 15 3.43 1.38    0.14  103    5       Constraint
+Likert scores 19 3.43 1.23    0.12  103    6       Constraint
+Likert scores 17 3.41 1.25    0.12  103    7       Constraint
+Likert scores 2  3.23 1.57    0.15  103    8       Constraint
+Likert scores 18 3.23 1.21    0.12  103    9       Constraint
+Likert scores 4  3.17 1.34    0.13  103   10       Constraint
+Likert scores 7  3.07 1.32    0.13  103   11       Constraint
+Likert scores 21 3.07 1.32    0.13  103   12       Constraint
+Likert scores 26 3.03 1.22    0.12  103   13       Constraint
+Likert scores 20 2.98 1.18    0.12  103   14       Constraint
+Likert scores 16 2.94 1.47    0.14  103   15       Constraint
+Likert scores 22 2.94 1.31    0.13  103   16       Constraint
+Likert scores 13 2.93 1.37    0.14  103   17       Constraint
+Likert scores 11 2.89 1.20    0.12  103   18       Constraint
+Likert scores 25 2.88 1.31    0.13  103   19       Constraint
+Likert scores 23 2.84 1.48    0.15  103   20       Constraint
+Likert scores 8  2.83 1.33    0.13  103   21       Constraint
+Likert scores 6  2.77 1.44    0.14  103   22       Constraint
+Likert scores 24 2.71 1.30    0.13  103   23       Constraint
+Likert scores 5  2.67 1.27    0.13  103   24       Constraint
+Likert scores 9  2.63 1.34    0.13  103   25       Constraint
+Likert scores 12 2.41 1.26    0.12  103   26 Not a constraint
+Likert scores 27 2.41 1.35    0.13  103   27 Not a constraint
+Likert scores 29 0.89 1.78    0.18  103   28 Not a constraint
+Likert scores 28 0.26 0.83    0.08  103   29 Not a constraint</code></pre>
+</div>
+<div id="means" class="section level3">
+<h3>Means</h3>
+<pre class="r"><code>sum1$Means</code></pre>
+<pre><code>                 Arithmetic Geometric Quadratic Harmonic Cubic
+Likert scores 1        4.34      4.11      4.48     3.74  4.58
+Likert scores 2        3.23      2.74      3.59     2.21  3.83
+Likert scores 3        3.49      3.13      3.74     2.70  3.92
+Likert scores 4        3.17      2.84      3.43     2.48  3.64
+Likert scores 5        2.67      2.34      2.95     2.00  3.19
+Likert scores 6        2.77      2.37      3.12     1.99  3.39
+Likert scores 7        3.07      2.71      3.34     2.31  3.53
+Likert scores 8        2.83      2.47      3.12     2.10  3.35
+Likert scores 9        2.63      2.29      2.95     1.98  3.22
+Likert scores 10       3.49      3.04      3.80     2.50  4.01
+Likert scores 11       2.89      2.62      3.13     2.32  3.33
+Likert scores 12       2.41      2.08      2.72     1.79  2.98
+Likert scores 13       2.93      2.55      3.24     2.14  3.46
+Likert scores 14       3.85      3.49      4.08     2.96  4.23
+Likert scores 15       3.43      3.07      3.69     2.64  3.89
+Likert scores 16       2.94      2.55      3.28     2.18  3.56
+Likert scores 17       3.41      3.11      3.63     2.74  3.79
+Likert scores 18       3.23      2.93      3.45     2.55  3.61
+Likert scores 19       3.43      3.15      3.64     2.80  3.80
+Likert scores 20       2.98      2.70      3.20     2.38  3.38
+Likert scores 21       3.07      2.73      3.34     2.35  3.55
+Likert scores 22       2.94      2.60      3.22     2.22  3.43
+Likert scores 23       2.84      2.41      3.20     1.99  3.47
+Likert scores 24       2.71      2.37      3.00     2.03  3.24
+Likert scores 25       2.88      2.53      3.16     2.15  3.37
+Likert scores 26       3.03      2.74      3.26     2.40  3.45
+Likert scores 27       2.41      0.00      2.76     0.00  3.03
+Likert scores 28       0.26      0.00      0.86     0.00  1.36
+Likert scores 29       0.89      0.00      1.98     0.00  2.62</code></pre>
+</div>
+</div>
+<div id="continous-data-summaries" class="section level2">
+<h2>Continous data summaries</h2>
+<div id="general-summaries-1" class="section level3">
+<h3>General summaries</h3>
+<pre class="r"><code>sum2$Summary</code></pre>
+<pre><code>          MKTcost    Age Experience Years spent in formal education
+Mean      3911.55  38.13      11.78                           10.35
+SD        2754.19  11.14       4.55                            5.19
+SE.Mean    275.42   1.11       0.46                            0.52
+Min          0.00  20.00       2.00                            0.00
+Median    2950.00  36.50      11.00                           12.00
+Max      14000.00  68.00      20.00                           20.00
+Q1        1850.00  30.00       8.75                            7.00
+Q3        5760.00  45.00      15.00                           14.00
+Skewness     1.19   0.83       0.38                           -0.72
+Kurtosis     1.32   0.01      -0.77                           -0.42
+Nobs       100.00 100.00     100.00                          100.00
+         Household size Years as a cooperative member
+Mean               8.30                         10.16
+SD                 3.60                          3.80
+SE.Mean            0.36                          0.38
+Min                0.00                          2.00
+Median             8.00                         10.00
+Max               17.00                         20.00
+Q1                 5.00                          7.75
+Q3                11.00                         12.00
+Skewness           0.18                          0.64
+Kurtosis          -0.37                         -0.20
+Nobs             100.00                        100.00</code></pre>
+</div>
+<div id="means-1" class="section level3">
+<h3>Means</h3>
+<pre class="r"><code>sum2$Means</code></pre>
+<pre><code>           MKTcost   Age Experience Years spent in formal education
+Arithmetic 3911.55 38.13      11.78                           10.35
+Geometric     0.00 36.64      10.86                            0.00
+Quadratic  4775.97 39.71      12.62                           11.57
+Harmonic      0.00 35.26       9.81                            0.00
+Cubic      5561.65 41.33      13.38                           12.25
+           Household size Years as a cooperative member
+Arithmetic           8.30                         10.16
+Geometric            0.00                          9.46
+Quadratic            9.04                         10.84
+Harmonic             0.00                          8.70
+Cubic                9.65                         11.49</code></pre>
+<p>Welcome to the world of easy Data Science and easy Machine Learning!</p>
+</div>
+</div>
+</div>

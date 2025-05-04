@@ -1,0 +1,129 @@
+---
+title: "Quicksummary of data for modeling and Machine Learning"
+output:
+  prettydoc::html_pretty:
+    theme: cayman #tactile, architect, leonids, hpstr
+    highlight: vignette #github
+    math: katex #latex
+  html_document: default
+  word_document: default
+  pdf_document: 
+    latex_engine: xelatex
+description: |
+  This blog is about `quicksummary` function in my R package `Dyn4cast`. This function provides the most important overview of data before modeling and Machine Learning in a one line of code technology!
+author:
+  - name: Job Nmadu
+    url: https://jobnmadu.com/
+categories:
+  - R
+date: "2025-05-04T01:00:00Z"
+tags: [RStats, Central tedencies, Means, Data Science, Machine Learning]
+---
+
+# Introduction
+
+This blog is about the improved function, `quicksummary` in the `Dyn4cast` package. The function provides quick overview of data and particularly outputting five different means.  
+
+Observational study involves procuring large mass of data for analysis and modeling. So, there is always need to have an overview of the data to decide on the appropriate analysis to be undertaken. This is where this function is unique because five different means are computed simultaneously, in spite of the _one line code_ arguments. The five means are:
+
+Arithmetic
+
+Geometric
+
+Harmonic
+
+Quadratic
+
+Cubic.
+
+The basic usage of the codes are:
+
+`quicksummary(x, Type, Cut, Up, Down, ci = 0.95)`
+
+**Arguments**
+
+`x` The data to be summarised. Only numeric data is allowed.
+
+`Type` The type of data to be summarized. There are two options here 1 or 2, 1 = Continuous and 2 = Likert-type
+
+`Cut` The cut-off point for Likert-type data
+
+`Up` The top Likert-type scale, for example, Agree, Constraints etc which would appear in the remark column.
+
+`Down` The lower Likert-type scale, for example, Disagree, ⁠Not a Constraint⁠ etc which would appear in the remark column.
+
+`ci` Confidence interval which is defaults to 0.95.
+
+Let us go!
+
+# Load library
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(tidy      = "styler",
+                      fig.align = "center",
+                      comment   = NA,
+                      warning   = FALSE,
+                      error     = FALSE,
+                      message   = FALSE,
+                      collapse  = FALSE,
+                      out.width = "100%",
+                      dev = "ragg_png", #<- prevent default Windows device to
+                      # render plots
+                      dpi       = 132,
+                      echo      = TRUE)
+```
+
+
+```{r}
+library(Dyn4cast)
+```
+
+# Computation of data summaries
+
+
+```{r, warning=FALSE}
+
+Up <- "Constraint"
+Down <- "Not a constraint"
+sum1 <- quicksummary(x = Quicksummary, Type = 2, Cut = 2.60, Up = Up, Down = Down)
+
+# Continuous data
+x <- select(linearsystems, 1:6)
+sum2 <- quicksummary(x = x, Type = 1)
+
+```
+
+## Likert-type summaries
+
+### General summaries
+
+```{r, warning=FALSE}
+
+sum1$Summary
+```
+
+### Means
+
+```{r, warning=FALSE}
+
+sum1$Means
+```
+
+
+## Continous data summaries
+
+### General summaries
+
+```{r, warning=FALSE}
+
+sum2$Summary
+```
+
+### Means
+
+```{r}
+
+sum2$Means
+```
+
+Welcome to the world of easy Data Science and easy Machine Learning!
