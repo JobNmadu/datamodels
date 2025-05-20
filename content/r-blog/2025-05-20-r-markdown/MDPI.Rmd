@@ -221,8 +221,7 @@ mdpi(data1, dm, id_add = "Water and Sanitation", id_add1 = "Nutrition")
 ## With six dimensions and factor
 
 ```{r, warning=FALSE}
-
-  dm <- list(d1 = c("d_cm"),
+dm <- list(d1 = c("d_cm"),
              d2 = c("d_satt","d_educ"),
              d3 = c("d_elct", "d_ckfl"),
              d4 = c("d_sani","d_wtr"),
@@ -231,7 +230,61 @@ mdpi(data1, dm, id_add = "Water and Sanitation", id_add1 = "Nutrition")
 
   mdpi(data1, dm, id_add = "Water and Sanitation", id_add1 = "Nutrition",
                 id_addn = "Housing and Assets", plots = "t", Factor = "region")
-  
+```
+
+## With seven dimensions and factor
+
+```{r, warning=FALSE}
+dm <- list(d1 = c("d_cm"),
+             d2 = c("d_satt","d_educ"),
+             d3 = c("d_elct", "d_ckfl"),
+             d4 = c("d_sani","d_wtr"),
+             d5 = c("d_nutr"),
+             d6 = c("d_hsg"),
+             d7 = c("d_asst"))
+
+  mdpi(data1, dm, id_add = "Water and Sanitation",
+                id_add1 = "Nutrition", id_addn = c("Housing", "Assets"),
+                plots = "t", Factor = "region")
+```
+
+## With eight dimensions and factor
+
+```{r, warning=FALSE}
+dm <- list(d1 = c("d_cm"),
+             d2 = c("d_satt","d_educ"),
+             d3 = c("d_elct", "d_ckfl"),
+             d4 = c("d_sani"),
+             d5 = c("d_nutr"),
+             d6 = c("d_hsg"),
+             d7 = c("d_asst"),
+             d8 = c("d_wtr"))
+
+  mdpi(data1, dm, id_add = "Sanitation",
+                 id_add1 = "Nutrition",
+                 id_addn = c("Housing", "Assets", "Water"),
+                 plots = "t", Factor = "region")
+```
+
+## With nine dimensions and factor
+
+```{r, warning=FALSE}
+
+  dm <- list(d1 = c("d_cm"),
+             d2 = c("d_satt","d_educ"),
+             d3 = c("d_elct", "d_ckfl"),
+             d4 = c("d_sani"),
+             d5 = c("d_nutr"),
+             d6 = c("d_hsg"),
+             d7 = c("d_asst"),
+             d8 = c("d_wtr"),
+             d9 = c("d_elct"))
+
+  mdpi(data1, dm, id_add = "Sanitation",
+                 id_add1 = "Nutrition",
+                 id_addn = c("Housing", "Assets", "Water", "Electricity"),
+                 plots = "t", Factor = "region")
+
 ```
 
 Welcome to the world of easy Data Science and easy Machine Learning!
