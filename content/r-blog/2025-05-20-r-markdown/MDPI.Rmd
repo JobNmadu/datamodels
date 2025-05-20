@@ -1,0 +1,237 @@
+---
+title: "Multidimensional poverty evaluation at national, sub-national and factor levels"
+output:
+  prettydoc::html_pretty:
+    theme: cayman #tactile, architect, leonids, hpstr
+    highlight: vignette #github
+    math: katex #latex
+  html_document: default
+  word_document: default
+  pdf_document: 
+    latex_engine: xelatex
+description: |
+  This blog is about `mdpi` function in my R package `Dyn4cast`. The function evaluate dynamic multidimentional poverty index!
+author:
+  - name: Job Nmadu
+    url: https://jobnmadu.com/
+categories:
+  - R
+date: "2025-05-20T01:00:00Z"
+tags: [RStats, multidimensional poverty  index, Alkire and Foster Multidimensional Poverty Index, Poverty Indicators, Poverty Measurements, Poverty Dimensions, Data Science, Machine Learning]
+---
+
+# Introduction
+The __Dyn4cast__ function was launched purposely to facilitate fast and easy forecast of **COVID-19** cases in Nigeria. It was converted to a package and the development version of the package was launched on the 17th of February, 2021 with a single function `DynamicForecast`. The tenet of this package is to present functions that are easy to implement and use. Over the last five years, additions continue to come up as the need arises and today, there are more than *10 functions* that are up mostly in **one line of codes**. The list of the functions are:  
+
+`DynamicForecast` 
+
+`constrainedforecast` 
+
+`Percent` 
+
+`MLMetrics`
+
+`MallowsCP` 
+
+`Linearsystems` 
+
+`quicksummary` 
+
+`formattedcut` 
+
+`data_transform` 
+
+`estimate_plot` 
+
+`corplot` 
+
+`garrett_ranking` 
+
+`Model_factors` 
+
+`treatment_model` 
+
+`mdpi` 
+
+`plot_mdpi` 
+
+`gender` 
+
+On inception, the package was loaded with quite a number of dependencies which made the installation quite busy. Over the years, the package has improved and the number of dependencies has been reduced considerably. The installation is straight forward with the development version.
+
+The development version can also be installed. You can install from GitHub:
+
+```
+# install.packages("devtools")
+devtools::install_github("JobNmadu/Dyn4cast")
+
+```
+through r-universe:
+
+```
+install.packages("Dyn4cast", repos = c("https://jobnmadu.r-universe.dev", "https://cloud.r-project.org"))
+```
+
+# Dynamic multidimensional poverty index computation
+
+This blog is about the function, `mdpi` in the `Dyn4cast` package. The function computes dynamic multidimensional poverty and all associated measures of multidimensional poverty.
+
+The main selling points of this function are:
+
+i. computations are made for between **three** and **nine** dimensions and can be grouped with factors like region, sex, gender, marital status or any suitable one. All the earlier algorithms provided for 3 dimensions.
+
+ii. In addition to MDPI, **six** additional indices are computed as listed below:
+
+1. Incidence of poverty
+
+2. Adjusted incidence of poverty
+
+3. Multidimensional poverty index (MDPI)
+
+4. Deprivation Scores
+
+5. Intensity of poverty
+
+6. Contribution in % of each of the dimensions to MDPI
+
+7. Average deprivation among the deprived
+
+iii. The computations can be done at national or sub-national levels or suitable factors
+
+The basic code usage is:
+
+mdpi(
+  data,
+  dm,
+  Bar = 0.4,
+  id_addn = NULL,
+  Factor = NULL,
+  plots = NULL,
+  id = c("Health", "Education", "Living standard"),
+  id_add = "Social security",
+  id_add1 = "Employment and Income")
+  
+**Arguments**
+
+ `data` ⁠data frame⁠ containing all the variables for the computation. Note that the variables to be used for the computation must be coded ⁠(0,1)⁠.
+
+`dm` list of vectors of indicators making up each dimension to be computed
+
+`Bar` an optional vector of cut-of used to divide the population into those in the poverty category and those that are not. Defaults to 0.4 if not supplied.
+
+`id_addn` an optional vector of additional dimensions to be used for the computation up to a maximum of four.
+
+`Factor` an optional grouping factor for the computation which must be a variable in the data. If not supplied, only the national MDPI will be computed.
+
+`plots` plots of the various measures. For this to be possible, the number of options in the Factor argument must be less than 41. The default is NULL. To produce the plots, any character string will overwrite the default.
+
+`id` a vector of the first three dimensions used in the computation given as _Health, Education and Living standard_. Can be redefined but must match the indicators and cannot be NULL.
+
+`id_add` a vector of the fourth dimension in the computation given as _Social security_. Can be re-defined but never NULL.
+
+`id_add1` a vector of the fifth dimension in the computation given as _Employment and Income_. Can be re-defined but never NULL.
+
+# Load library and data
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(tidy      = "styler",
+                      fig.align = "center",
+                      comment   = NA,
+                      warning   = FALSE,
+                      error     = FALSE,
+                      message   = FALSE,
+                      collapse  = FALSE,
+                      out.width = "100%",
+                      dev = "ragg_png", #<- prevent default Windows device to
+                      # render plots
+                      dpi       = 132,
+                      echo      = TRUE)
+```
+
+
+```{r}
+library(Dyn4cast)
+library(tidyverse)
+ data <- mdpi1
+ data1 <- mdpi2
+```
+
+data from `MPI` package
+
+data1 from `mpitbR` package
+
+# Computation of  multidimensional poverty index (MDPI)
+
+## With three dimensions and factor
+
+```{r, warning=FALSE}
+dm <- list(d1 = c("Child.Mortality", "Access.to.health.care"),
+             d2 = c("Years.of.education", "School.attendance", "School.lag"),
+             d3 = c("Cooking.Fuel", "Access.to.clean.source.of.water",
+                    "Access.to.an.improve.sanatation", "Electricity",
+                    "Housing.Materials", "Asset.ownership"))
+  mdpi(data, dm, plots = "t", Factor = "Region")
+```
+
+## With three dimensions, no factor
+```{r, warning=FALSE}
+mdpi(data, dm, plots = "t")
+```
+
+## With four dimensions and factor
+
+```{r, warning=FALSE}
+dm <- list(d1 = c("Child.Mortality", "Access.to.health.care"),
+             d2 = c("Years.of.education", "School.attendance", "School.lag"),
+             d3 = c("Cooking.Fuel", "Electricity", "Housing.Materials",
+                    "Asset.ownership"),
+             d4 = c("Access.to.clean.source.of.water",
+                    "Access.to.an.improve.sanatation"))
+
+  mdpi(data, dm, id_add = c("Water and Sanitation"),
+                plots = "t", Factor = "Region")
+```
+
+## With five dimensions and factor
+
+```{r, warning=FALSE}
+dm <- list(d1 = c("d_cm"),
+             d2 = c("d_satt","d_educ"),
+             d3 = c("d_elct", "d_hsg","d_ckfl","d_asst"),
+             d4 = c("d_sani","d_wtr"),
+             d5 = c("d_nutr"))
+
+  mdpi(data1, dm, id_add = "Water and Sanitation", id_add1 = "Nutrition",
+       plots = "t", Factor = "region")
+```
+
+## With five dimensions, no plot
+
+```{r, warning=FALSE}
+mdpi(data1, dm, id_add = "Water and Sanitation", id_add1 = "Nutrition",
+       Factor = "region")
+```
+
+## With five dimensions, no factor, no plot
+
+```{r, warning=FALSE}
+mdpi(data1, dm, id_add = "Water and Sanitation", id_add1 = "Nutrition")
+```
+
+## With six dimensions and factor
+
+```{r, warning=FALSE}
+
+  dm <- list(d1 = c("d_cm"),
+             d2 = c("d_satt","d_educ"),
+             d3 = c("d_elct", "d_ckfl"),
+             d4 = c("d_sani","d_wtr"),
+             d5 = c("d_nutr"),
+             d6 = c("d_hsg","d_asst"))
+
+  mdpi(data1, dm, id_add = "Water and Sanitation", id_add1 = "Nutrition",
+                id_addn = "Housing and Assets", plots = "t", Factor = "region")
+  
+```
+
+Welcome to the world of easy Data Science and easy Machine Learning!
