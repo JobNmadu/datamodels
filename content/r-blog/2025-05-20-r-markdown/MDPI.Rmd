@@ -173,25 +173,6 @@ dm <- list(d1 = c("Child.Mortality", "Access.to.health.care"),
   mdpi(data, dm, plots = "t", Factor = "Region")
 ```
 
-## With three dimensions, no factor
-```{r, warning=FALSE}
-mdpi(data, dm, plots = "t")
-```
-
-## With four dimensions and factor
-
-```{r, warning=FALSE}
-dm <- list(d1 = c("Child.Mortality", "Access.to.health.care"),
-             d2 = c("Years.of.education", "School.attendance", "School.lag"),
-             d3 = c("Cooking.Fuel", "Electricity", "Housing.Materials",
-                    "Asset.ownership"),
-             d4 = c("Access.to.clean.source.of.water",
-                    "Access.to.an.improve.sanatation"))
-
-  mdpi(data, dm, id_add = c("Water and Sanitation"),
-                plots = "t", Factor = "Region")
-```
-
 ## With five dimensions and factor
 
 ```{r, warning=FALSE}
@@ -203,19 +184,6 @@ dm <- list(d1 = c("d_cm"),
 
   mdpi(data1, dm, id_add = "Water and Sanitation", id_add1 = "Nutrition",
        plots = "t", Factor = "region")
-```
-
-## With five dimensions, no plot
-
-```{r, warning=FALSE}
-mdpi(data1, dm, id_add = "Water and Sanitation", id_add1 = "Nutrition",
-       Factor = "region")
-```
-
-## With five dimensions, no factor, no plot
-
-```{r, warning=FALSE}
-mdpi(data1, dm, id_add = "Water and Sanitation", id_add1 = "Nutrition")
 ```
 
 ## With six dimensions and factor
@@ -230,22 +198,6 @@ dm <- list(d1 = c("d_cm"),
 
   mdpi(data1, dm, id_add = "Water and Sanitation", id_add1 = "Nutrition",
                 id_addn = "Housing and Assets", plots = "t", Factor = "region")
-```
-
-## With seven dimensions and factor
-
-```{r, warning=FALSE}
-dm <- list(d1 = c("d_cm"),
-             d2 = c("d_satt","d_educ"),
-             d3 = c("d_elct", "d_ckfl"),
-             d4 = c("d_sani","d_wtr"),
-             d5 = c("d_nutr"),
-             d6 = c("d_hsg"),
-             d7 = c("d_asst"))
-
-  mdpi(data1, dm, id_add = "Water and Sanitation",
-                id_add1 = "Nutrition", id_addn = c("Housing", "Assets"),
-                plots = "t", Factor = "region")
 ```
 
 ## With eight dimensions and factor
