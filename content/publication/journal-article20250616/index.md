@@ -14,7 +14,7 @@ authors:
 - J. Moses
 - G. T. Oguntebi
 - F. O. Okafor
-- E. O. Oshin,
+- E. O. Oshin
 - A. O. Peters
 - admin
 date: "2025-04-30T00:00:00Z"
