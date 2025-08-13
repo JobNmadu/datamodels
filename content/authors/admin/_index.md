@@ -16,7 +16,7 @@ btn:
 superuser: true
 
 # Role/position
-role: Professor of Agricultural Economics and Dean, School of Agriculture and Agricultural Technology
+role: Professor of Econometric Modeling, Data Science & Machine Learning
 
 # Organizations/Affiliations
 organizations:
@@ -24,7 +24,7 @@ organizations:
   url: "https://www.futminna.edu.ng"
 
 # Short bio (displayed in user profile at end of posts)
-bio: Research interests are economic efficiencies of small scale farming and welfare effects of agricultural interventions.
+bio: Data-Driven Development: Transforming complex research into actionable insights, empowering development through data-driven solutions!
 
 # Should the user's education and interests be displayed?
 display_education: true
