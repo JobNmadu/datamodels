@@ -42,7 +42,7 @@ hero_media = "user_2021.jpg"
   label = "Contact me"
 
 +++
-## **Job Nmadu**, **Professor of Econometrics Modeling**
+## **Job Nmadu**, **Professor of Econometric Modeling**
 
 Proudly re-syndicated by [R-bloggers](http://r-bloggers.com/)
 
