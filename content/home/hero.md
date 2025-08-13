@@ -42,8 +42,8 @@ hero_media = "user_2021.jpg"
   label = "Contact me"
 
 +++
-## **Job Nmadu**, **Professor of Agricultural Economics** specializing in **Econometrics**
+## **Job Nmadu**, **Professor of Econometrics Modeling**
 
 Proudly re-syndicated by [R-bloggers](http://r-bloggers.com/)
 
-Academic, Teacher, Researcher, Consultant, Administrator and Community Leader with skills in Data Science and Machine Learning Modelling with R; Computable General Equilibrium Modellng with GAMS and Students Advisor (Undergraduates, Masters and Doctoral).
+Academic, Teacher, Researcher, Consultant, Administrator and Community Leader with skills in Data Science and Machine Learning; Computable General Equilibrium Modeling and Students Advisor.

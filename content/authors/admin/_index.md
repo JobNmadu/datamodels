@@ -45,10 +45,10 @@ education:
     year: 1987
 
 interests:
-- Economics and Efficiencies of Small Scale farming
-- Econometric (Regressions) Modelling
-- Data Science and Machine Learning with R
-- Computable General Equilibrium (CGE) Modelling with GAMS
+- Agricultural, Development and Environmental Economics
+- Econometric Modeling
+- Data Science and Machine Learning
+- Computable General Equilibrium
 
 # Social/academia Networking
 # For available icons, see: https://sourcethemes.com/academic/docs/widgets/#icons
