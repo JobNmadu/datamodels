@@ -24,7 +24,7 @@ organizations:
   url: "https://www.futminna.edu.ng"
 
 # Short bio (displayed in user profile at end of posts)
-bio: Data-Driven Development: Transforming complex research into actionable insights, empowering development through data-driven solutions!
+bio: 'Data-Driven Development: Transforming complex research into actionable insights, empowering development through data-driven solutions'
 
 # Should the user's education and interests be displayed?
 display_education: true
