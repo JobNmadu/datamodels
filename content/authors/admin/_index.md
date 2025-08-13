@@ -99,7 +99,7 @@ user_groups:
 - Visitors
 ---
 
-Research interests are economic efficiencies of small scale farming and welfare effects of agricultural interventions.
+"Data-Driven Development: Transforming complex agricultural research and interventions into actionable economic and welfare effects, empowering development."
 
 ![reviews](../../img/ranks.jpg)
 
