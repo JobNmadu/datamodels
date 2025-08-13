@@ -99,7 +99,7 @@ user_groups:
 - Visitors
 ---
 
-"Data-Driven Development: Transforming complex agricultural research and interventions into actionable economic and welfare effects, empowering development."
+Data-Driven Development: Transforming complex agricultural research and interventions into actionable economic and welfare effects, empowering development.
 
 ![reviews](../../img/ranks.jpg)
 
