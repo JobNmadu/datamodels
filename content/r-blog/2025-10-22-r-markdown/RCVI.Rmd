@@ -1,0 +1,221 @@
+---
+title: "Stability and Fragility: Assessing Resilience Capacity and Vulnerability Index in Systems and Users"
+output:
+  prettydoc::html_pretty:
+    theme: cayman #tactile, architect, leonids, hpstr
+    highlight: vignette #github
+    math: katex #latex
+  html_document: default
+  word_document: default
+  pdf_document: 
+    latex_engine: xelatex
+description: |
+  This blog is about **index_construction**, **relative_likert** and **model_factors** functions which are useful in measuring **Resilience capacity** and **Vulnerability index**!
+author:
+  - name: Job Nmadu
+    url: https://jobnmadu.com/
+categories:
+  - R
+date: "2025-05-20T01:00:00Z"
+tags: [RStats, Resilience capacity, Adaptive capacity, Absorptive capacity, Transformative capacity, Vulnerability index, Exposure, Sensitivity, Data Science, Machine Learning]
+---
+
+# Introduction
+
+In today's complex and dynamic world, understanding the stability and fragility of systems and users is crucial for ensuring resilience and mitigating potential risks. Resilience capacity and vulnerability index are important in measuring the ability of systems and users to withstand and recover from disruptions.
+
+## Resilience Capacity
+
+Resilience capacity refers to the ability of systems and users to absorb and adapt to disturbances, maintaining their functionality and performance. Resilience capacity has three components, i.e., 
+
+- Adaptive capacity: The ability to adapt to changing conditions
+
+- Absorptive capacity: The ability to absorb shocks and disruptions
+
+- Transformative capacity: The ability to recover from disruptions
+
+![](img/RC.png)  
+
+
+## Vulnerability Index
+
+A vulnerability index is a quantitative measure of the susceptibility of systems and users to disruptions and shocks. It also has three components, i.e.,
+
+- Adaptive capacity: The ability to adapt to changing conditions. This is aggregated from different indicators such as _Awareness, Availability, Affordability, Accessibility, Beneficial, Adequacy, Utilization, Effectiveness,_ 
+etc. The various indicators are measured using likert-type responses of the systems or by the users.
+
+- Exposure: The likelihood of being affected by disruptions
+
+- Sensitivity: The degree to which systems and users are affected by disruptions
+
+![](img/VI.png)
+
+It can be noted that Adaptive Capacity is a component of both resilience and vulnerability. However, the adaptive capacity from vulnerability is knowledge-based and it is obtained by individually converting the Likert scores to indices for each indicator and aggregated. That of resilience capacity is based both financial and human capital as well as strong social and institutional networks. `Dyn4cast` package is able to estimate both.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(tidy      = "styler",
+                      fig.align = "center",
+                      comment   = NA,
+                      warning   = FALSE,
+                      error     = FALSE,
+                      message   = FALSE,
+                      collapse  = FALSE,
+                      out.width = "100%",
+                      dev = "ragg_png", #<- prevent default Windows device to
+                      # render plots
+                      dpi       = 132,
+                      echo      = TRUE)
+```
+
+## Measuring Resilience capacity
+
+Resilience capacity is one of the objects created when the function `model_factors` in the package `Dyn4cast` is implemented. The basic usage is:
+
+
+> model_factors(data, DATA)  
+
+where:
+
+`data` is an ⁠R object⁠ obtained from exploratory factor analysis (EFA) using the fa function in psych package.
+
+`DATA`	is a `data.frame`, the raw data used to carry out the parallel analysis to obtain `data` object.
+
+## Implement the function
+
+```{r}
+
+library(Dyn4cast)
+library(tidyverse)
+library(psych)
+library(readr)
+Data <- Quicksummary
+GGn <- names(Data)
+GG <- ncol(Data)
+GGx <- c(paste0('x0', 1 : 9), paste("x", 10 : ncol(Data), sep = ""))
+names(Data) <- GGx
+lll <- fa.parallel(Data, fm = "minres", fa = "fa", main = "", plot = FALSE)
+dat <- fa(Data, nfactors = lll[["nfact"]], rotate = "varimax",fm = "minres")
+
+fff <- model_factors(data = dat, DATA = Data)
+```
+
+### Resiliece capacity 
+
+```{r}
+fff$`Resilence capacity`
+```
+
+To obtain Resilience capacity, the function is run for each component.
+
+
+## knowledge-based Adaptive Capacity measurement
+
+To do this, the `relative_likert` function in `Dyn4cast` package is implemented. The basic usage is:
+
+> relative_likert(data, Likert = NULL, Ranks = NULL, Option = "text")  
+
+where:
+
+`data` Data frame of likert data either in text or scores.
+
+`Likert` Vector of likert-type factors in descending order as in the data frame which must be given if the data frame is in text.
+
+`Ranks` Optional vector of number of levels which is required if the data frame is in scores rather than text. There are only four choices i.e. 3, 5, 7, 9.
+
+`Option` Optional vector indicating whether the data frame is in text or scores format. Defaults to text if not given for text data frame.
+
+## Implement the function
+
+```{r}
+library(readr)
+garrett_data <- data.frame(garrett_data)
+
+rrr <- relative_likert(garrett_data, Ranks = 9, Option = "sccore")
+```
+
+### Adaptive capacity
+
+```{r}
+rrr$lik_col
+```
+
+
+```{r}
+data_l <- garrett_data %>%
+pivot_longer(cols = everything()) %>%
+ mutate(value = case_when(value == 5 ~ "Serious constraint",
+                          value == 4 ~ "Constraint",
+                          value == 3 ~ "Not certain it is a constraint",
+                          value == 2 ~ "Not a constraint",
+                          value == 1 ~ "Not a serious constraint",
+                          .default = "None")) %>%
+ group_by(name) %>%
+ mutate(row = row_number()) %>%
+ pivot_wider(names_from = name, values_from = value) %>%
+ select(-row) %>%
+ unnest(cols = everything())
+
+ ranking <- c("Serious constraint", "Constraint",
+"Not certain it is a constraint", "Not a constraint",
+"Not a serious constraint")
+
+ ddd <- relative_likert(data_l, Likert = ranking)
+
+```
+
+### Adaptive capacity
+
+```{r}
+ddd$lik_col
+```
+
+## Estimation of Exposure or Sensitivity
+
+This is possiblle from the function `index_construction` from the package `Dyn4cast` and usage is:
+
+> index_construction(data)  
+
+where:
+
+`data` Data frame of indicators of Exposure or Sensitivity. The data frame must be numeric.
+
+## Implement the function
+
+```{r}
+library(readr)
+garrett_data <- data.frame(garrett_data)
+iii <- index_construction(garrett_data)
+```
+
+###  Exposure or Sensitivity
+
+```{r}
+iii$Index
+```
+
+# Attrition
+
+```
+cite this article as:
+
+Nmadu J (2025).Stability and Fragility: Assessing Resilience Capacity and Vulnerability Index in Systems and Users. https://www.jobnmadu.com/r-blog/2025-10-22-r-markdown/rcvi/.
+
+To cite package 'Dyn4cast' in publications use:
+
+  Nmadu J (2025). _Dyn4cast: Dynamic Modeling and Machine Learning
+  Environment_. R package version 11.11.24,
+  <https://github.com/JobNmadu/Dyn4cast>.
+
+A BibTeX entry for LaTeX users is
+
+  @Manual{,
+    title = {_Dyn4cast: Dynamic Modeling and Machine Learning Environment_},
+    author = {Job Nmadu},
+    year = {2025},
+    note = {R package version 11.11.24},
+    url = {https://github.com/JobNmadu/Dyn4cast},
+  }
+```
+
+
+Welcome to Data Science and Machine Learning!
