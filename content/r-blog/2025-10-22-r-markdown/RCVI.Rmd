@@ -10,7 +10,7 @@ output:
   pdf_document: 
     latex_engine: xelatex
 description: |
-  This blog is about index_construction, relative_likert and model_factors functions which are useful in measuring **Resilience capacity and Vulnerability index!
+  This blog is about **index_construction**, **relative_likert** and **model_factors** functions which are useful in measuring **Resilience capacity** and **Vulnerability index**!
 author:
   - name: Job Nmadu
     url: https://jobnmadu.com/
