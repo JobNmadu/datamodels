@@ -41,7 +41,7 @@ In today's complex and dynamic world, understanding the stability and fragility 
 
 ## Resilience Capacity
 
-Resilience capacity refers to the ability of systems and users to absorb and adapt to disturbances, maintaining their functionality and performance. Resilience capacity has three components, i.e., 
+Resilience capacity refers to the ability of systems and users to absorb and adapt to disturbances, maintaining their functionality and performance. Resilience capacity has three components (Fig. 1), i.e., 
 
 - Adaptive capacity: The ability to adapt to changing conditions
 
@@ -52,10 +52,11 @@ Resilience capacity refers to the ability of systems and users to absorb and ada
 
 <img src="../img/RC.jpg" alt="" width="864" height="354">   
 
+Fig. 1 Components of Resilience Capacity
 
 ## Vulnerability Index
 
-A vulnerability index is a quantitative measure of the susceptibility of systems and users to disruptions and shocks. It also has three components, i.e.,
+A vulnerability index is a quantitative measure of the susceptibility of systems and users to disruptions and shocks. It also has three components (Fig. 2), i.e.,
 
 - Adaptive capacity: The ability to adapt to changing conditions. This is aggregated from different indicators such as _Awareness, Availability, Affordability, Accessibility, Beneficial, Adequacy, Utilization, Effectiveness,_ 
 etc. The various indicators are measured using likert-type responses of the systems or by the users.
@@ -67,6 +68,7 @@ etc. The various indicators are measured using likert-type responses of the syst
 
 <img src="../img/VI.jpg" alt="" width="613" height="540">   
 
+Fig. 2 Components of Vulnerability
 
 It can be noted that Adaptive Capacity is a component of both resilience and vulnerability. However, the adaptive capacity from vulnerability is knowledge-based and it is obtained by individually converting the Likert scores to indices for each indicator and aggregated. That of resilience capacity is based both financial and human capital as well as strong social and institutional networks. `Dyn4cast` package is able to estimate both.
 
