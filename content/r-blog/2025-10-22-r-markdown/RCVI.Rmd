@@ -198,7 +198,7 @@ iii$Index
 ```
 cite this article as:
 
-Nmadu J (2025).Stability and Fragility: Assessing Resilience Capacity and Vulnerability Index in Systems and Users. https://www.jobnmadu.com/r-blog/2025-10-22-r-markdown/rcvi/.
+Nmadu J (2025).Stability and Fragility: Assessing Resilience Capacity and Vulnerability Index in Systems and Users. https://www.jobnmadu.com/r-blog/.
 
 To cite package 'Dyn4cast' in publications use:
 
