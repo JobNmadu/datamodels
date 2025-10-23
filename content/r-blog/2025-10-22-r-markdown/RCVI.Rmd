@@ -49,7 +49,10 @@ Resilience capacity refers to the ability of systems and users to absorb and ada
 
 - Transformative capacity: The ability to recover from disruptions
 
-<img src="img/RC.jpg" alt="" width="854" height="354">
+
+```{r echo = FALSE}
+knitr::include_graphics("img/RC.jpg")
+```
 
 
 ## Vulnerability Index
@@ -63,7 +66,10 @@ etc. The various indicators are measured using likert-type responses of the syst
 
 - Sensitivity: The degree to which systems and users are affected by disruptions
 
-<img src="img/VI.jpg" alt="" width="613" height="540">
+
+```{r echo = FALSE}
+knitr::include_graphics("img/VI.jpg")
+```
 
 It can be noted that Adaptive Capacity is a component of both resilience and vulnerability. However, the adaptive capacity from vulnerability is knowledge-based and it is obtained by individually converting the Likert scores to indices for each indicator and aggregated. That of resilience capacity is based both financial and human capital as well as strong social and institutional networks. `Dyn4cast` package is able to estimate both.
 
