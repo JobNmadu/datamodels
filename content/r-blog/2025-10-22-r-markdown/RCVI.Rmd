@@ -20,6 +20,21 @@ date: "2025-10-22T01:00:00Z"
 tags: [RStats, Resilience capacity, Adaptive capacity, Absorptive capacity, Transformative capacity, Vulnerability index, Exposure, Sensitivity, Data Science, Machine Learning]
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(tidy      = "styler",
+                      fig.align = "center",
+                      comment   = NA,
+                      warning   = FALSE,
+                      error     = FALSE,
+                      message   = FALSE,
+                      collapse  = FALSE,
+                      out.width = "100%",
+                      dev = "ragg_png", #<- prevent default Windows device to
+                      # render plots
+                      dpi       = 132,
+                      echo      = TRUE)
+```
+
 # Introduction
 
 In today's complex and dynamic world, understanding the stability and fragility of systems and users is crucial for ensuring resilience and mitigating potential risks. Resilience capacity and vulnerability index are important in measuring the ability of systems and users to withstand and recover from disruptions.
@@ -51,21 +66,6 @@ etc. The various indicators are measured using likert-type responses of the syst
 ![](img/VI.jpg)
 
 It can be noted that Adaptive Capacity is a component of both resilience and vulnerability. However, the adaptive capacity from vulnerability is knowledge-based and it is obtained by individually converting the Likert scores to indices for each indicator and aggregated. That of resilience capacity is based both financial and human capital as well as strong social and institutional networks. `Dyn4cast` package is able to estimate both.
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(tidy      = "styler",
-                      fig.align = "center",
-                      comment   = NA,
-                      warning   = FALSE,
-                      error     = FALSE,
-                      message   = FALSE,
-                      collapse  = FALSE,
-                      out.width = "100%",
-                      dev = "ragg_png", #<- prevent default Windows device to
-                      # render plots
-                      dpi       = 132,
-                      echo      = TRUE)
-```
 
 ## Measuring Resilience capacity
 
