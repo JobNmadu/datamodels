@@ -35,7 +35,12 @@ The advent of the COVID-19 pandemic really put everyone in confusion and as the 
 
 For the above two reasons, the animation for Nigeria could not be achieved almost immediately. After the initial manual compilation of the data set from NCDC, an animation of the incidence in Nigeria was made on the 3rd of May, 2020 as shown below.
 
-```{r echo = FALSE}
+<video width="640" height="360" controls>
+  <source src="../data/may012020.mp4" type="video/mp4">
+</video>
+  
+
+```{r echo = FALSE, eval = FALSE}
 library(embedr)
 
 embed_video(
