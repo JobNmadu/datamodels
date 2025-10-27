@@ -35,7 +35,7 @@ The advent of the COVID-19 pandemic really put everyone in confusion and as the 
 
 For the above two reasons, the animation for Nigeria could not be achieved almost immediately. After the initial manual compilation of the data set from NCDC, an animation of the incidence in Nigeria was made on the 3rd of May, 2020 as shown below.
 
-<img src="../data/may012020.mp4" alt="">   
+<img src="data/may012020.mp4">   
 
 Thereafter, daily summaries, trend of the observed cases and possible future path through modeling and forecasting were made once the data is updated. The forecast lenght was usually the total length of the observed data which entually led to the concept of **equal length forecast**. It was in this wise that it was observed that the changes in forecast with just a additional day's data were quite alarming. Hence there was need to have a way of quickly comparing time-variant forecasts. After careful consideration, the concept was synthesized into the _Dyn4cast_ package [@nma2020]. Presently, the package has five functions.
 
