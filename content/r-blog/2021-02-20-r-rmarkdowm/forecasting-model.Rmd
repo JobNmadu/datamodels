@@ -1,6 +1,5 @@
 ---
 title: "Time-varying estimation of machine learning models and their forecasts"
-date: "2021-02-20"
 bibliography: data/bibliography.bib
 description: |
   The post is about Dyn4cast package and its basic use.
@@ -18,6 +17,7 @@ output:
   word_document: default
   pdf_document: 
     latex_engine: xelatex
+date: "2021-02-20T01:00:00Z"
 tags: [time variant forecasting, constrained forecast, COVID-19, Nigeria]
 ---
 
@@ -35,7 +35,7 @@ The advent of the COVID-19 pandemic really put everyone in confusion and as the 
 
 For the above two reasons, the animation for Nigeria could not be achieved almost immediately. After the initial manual compilation of the data set from NCDC, an animation of the incidence in Nigeria was made on the 3rd of May, 2020 as shown below.
 
-![](data/may012020.mp4)
+<img src="../data/may012020.mp4" alt="">   
 
 Thereafter, daily summaries, trend of the observed cases and possible future path through modeling and forecasting were made once the data is updated. The forecast lenght was usually the total length of the observed data which entually led to the concept of **equal length forecast**. It was in this wise that it was observed that the changes in forecast with just a additional day's data were quite alarming. Hence there was need to have a way of quickly comparing time-variant forecasts. After careful consideration, the concept was synthesized into the _Dyn4cast_ package [@nma2020]. Presently, the package has five functions.
 
@@ -70,8 +70,12 @@ The sample data is the daily COVID-19 cases recorded and aggregagted into nation
 ```{r example, eval = TRUE, warning = FALSE, message = FALSE}
 
 library(Dyn4cast)
+library(tidyverse)
 data <- COVID19
+
 data$Date <- as.Date(data$Date, format = '%m/%d/%Y')
+date <- data$Date
+series <- data$Case
 Dss <- seq(data$Date[1], by = "day", length.out = length(data$Case))
 lastdayfo21 <- Dss[length(Dss)]
 
@@ -83,7 +87,7 @@ BREAKS = c(70, 131, 173, 228, 274)
 The constrained and unconstrained forecast are presented for compaison but the right one is the constrained forecast. It was necessary to consraine the forecast to the positive quadrant since ther is no zero and negative observations.
 
 ```{r eval = TRUE, warning = FALSE, message=FALSE}
-Days_full <- DynamicForecast(Data = data, BREAKS = BREAKS, MaximumDate = "2021-02-10", Trend = "Day", Length = 0, Type = "Integer")
+Days_full <- DynamicForecast(date = date, series = series, BREAKS = BREAKS, MaximumDate = "2021-02-10", Trend = "Day", Length = 0, Type = "Integer")
 summary(Days_full$`Ensembled based on summed weight`)
 ```
 
@@ -118,7 +122,9 @@ Days_full$`Constrained forecast Plot`
 
 ```{r eval = TRUE, warning = FALSE}
 KK_28 <- data[data$Date <= lastdayfo21 - 28, ]
-Days_28 <- DynamicForecast(Data = KK_28, BREAKS = BREAKS, MaximumDate = "2021-02-10", Trend = "Day", Length = 0, Type = "Integer")
+date <- KK_28$Date
+series <- KK_28$Case
+Days_28 <- DynamicForecast(date = date, series = series, BREAKS = BREAKS, MaximumDate = "2021-02-10", Trend = "Day", Length = 0, Type = "Integer")
 summary(Days_28$`Ensembled based on summed weight`)
 
 knitr::kable(as.data.frame(Days_28$`Unconstrained Forecast`),
@@ -134,7 +140,10 @@ Days_28$`Constrained forecast Plot`
 
 ```{r eval = TRUE, warning = FALSE}
 KK_14 <- data[data$Date <= lastdayfo21 - 14, ]
-Days_14 <- DynamicForecast(Data = KK_14, BREAKS = BREAKS, MaximumDate = "2021-02-10", Trend = "Day", Length = 0, Type = "Integer")
+date <- KK_14$Date
+series <- KK_14$Case
+
+Days_14 <- DynamicForecast(date = date, series = series, BREAKS = BREAKS, MaximumDate = "2021-02-10", Trend = "Day", Length = 0, Type = "Integer")
 
 summary(Days_14$`Ensembled based on weight`)
 
@@ -151,7 +160,10 @@ Days_14$`Constrained forecast Plot`
 
 ```{r eval = TRUE, warning = FALSE}
 KK_1 <- data[data$Date <= lastdayfo21 - 1, ]
-Days_1 <- DynamicForecast(Data = KK_1, BREAKS = BREAKS, MaximumDate = "2021-02-10", Trend = "Day", Length = 0, Type = "Integer")
+date <- KK_1$Date
+series <- KK_1$Case
+
+Days_1 <- DynamicForecast(date = date, series = series, BREAKS = BREAKS, MaximumDate = "2021-02-10", Trend = "Day", Length = 0, Type = "Integer")
 
 summary(Days_1$`Ensembled based on weight`)
 
