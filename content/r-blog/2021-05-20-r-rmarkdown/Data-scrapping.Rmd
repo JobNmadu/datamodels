@@ -91,27 +91,13 @@ The outcome of this method is better than that of the PDF but the thousand value
 
 The third method is to use Excel to scrap the data. For this, open `MS-Excel`, Select `Data` from the _Menu_ as shown in the graphics below
 
-```{r echo=FALSE, out.width='100%'}
 
-knitr::include_graphics("img/page1.png")
+<img src="../img/page1.png" alt="" width="864" height="354"> 
 
-```
-
+<img src="../img/page2.png" alt="" width="864" height="354"> 
 
 
-```{r echo=FALSE, out.width='100%'}
-
-knitr::include_graphics("img/page2.png")
-
-```
-
-
-
-```{r echo=FALSE, out.width='100%', eval=FALSE}
-
-knitr::include_graphics("img/page3.png")
-
-```
+<img src="../img/page3.png" alt="" width="864" height="354"> 
 
 
 This proved more helpful that the first two and is easier to use as it does not require any coding as shown in the pictures.
@@ -120,13 +106,7 @@ This proved more helpful that the first two and is easier to use as it does not 
 
 The fourth method is to scrap the data directly by selecting and copying the data from the website.
 
-```{r echo=FALSE, out.width='100%'}
-
-knitr::include_graphics("img/page4.png")
-
-```
-
-
+<img src="../img/page4.png" alt="" width="864" height="354"> 
 
 This is the easiest and most efficient as no codes are needed and the copied data is saved directly in Excel for further formatting.
 

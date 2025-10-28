@@ -71,29 +71,29 @@ COVID19 &lt;- COVID19[[1]] # the Table is item 1 in the scrapped data
 xlsx::write.xlsx2(COVID19, file = &quot;data/daily160920.xlsx&quot;, 
                   col.names = TRUE, row.names = FALSE) # the scrapped data is saved to Excel file</code></pre>
 <pre><code>## # A tibble: 6 × 5
-##   `States Affected` `No. of Cases (Lab Confirmed)` No. of Case…¹ No. D…² No. o…³
-##   &lt;chr&gt;                                      &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-## 1 Lagos                                      25436          1507   23697     232
-## 2 FCT                                         8908          2356    6464      88
-## 3 Plateau                                     4099           148    3917      34
-## 4 Kaduna                                      4098           603    3448      47
-## 5 Oyo                                         3773           355    3372      46
-## 6 Rivers                                      3217           228    2929      60
-## # … with abbreviated variable names ¹​`No. of Cases (on admission)`,
-## #   ²​`No. Discharged`, ³​`No. of Deaths`</code></pre>
+##   `States Affected` `No. of Cases (Lab Confirmed)` `No. of Cases (on admission)`
+##   &lt;chr&gt;                                      &lt;dbl&gt;                         &lt;dbl&gt;
+## 1 Lagos                                      25436                          1507
+## 2 FCT                                         8908                          2356
+## 3 Plateau                                     4099                           148
+## 4 Kaduna                                      4098                           603
+## 5 Oyo                                         3773                           355
+## 6 Rivers                                      3217                           228
+## # ℹ 2 more variables: `No. Discharged` &lt;dbl&gt;, `No. of Deaths` &lt;dbl&gt;</code></pre>
 <p>The outcome of this method is better than that of the PDF but the thousand values were comma-separated, so, to use the data further, the commas had to be removed by formatting manually.</p>
 </div>
 <div id="scrapping-data-from-excel" class="section level1">
 <h1>Scrapping data from Excel</h1>
 <p>The third method is to use Excel to scrap the data. For this, open <code>MS-Excel</code>, Select <code>Data</code> from the <em>Menu</em> as shown in the graphics below</p>
-<p><img src="img/page1.png" width="100%" /></p>
-<p><img src="img/page2.png" width="100%" /></p>
+<p><img src="../img/page1.png" alt="" width="864" height="354"></p>
+<p><img src="../img/page2.png" alt="" width="864" height="354"></p>
+<p><img src="../img/page3.png" alt="" width="864" height="354"></p>
 <p>This proved more helpful that the first two and is easier to use as it does not require any coding as shown in the pictures.</p>
 </div>
 <div id="scrapping-data-by-copy-paste-to-from-website-to-excel" class="section level1">
 <h1>Scrapping data by copy-paste to from website to Excel</h1>
 <p>The fourth method is to scrap the data directly by selecting and copying the data from the website.</p>
-<p><img src="img/page4.png" width="100%" /></p>
+<p><img src="../img/page4.png" alt="" width="864" height="354"></p>
 <p>This is the easiest and most efficient as no codes are needed and the copied data is saved directly in Excel for further formatting.</p>
 <p>After scrapping the data with any of the methods mentioned above, then, they are formatted for preparing visuals. To study the trend of spread and how recoveries and/or deaths occur from time to time, the daily records were obtained from the aggregated data.</p>
 </div>
