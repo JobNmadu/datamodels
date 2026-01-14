@@ -101,6 +101,6 @@ user_groups:
 
 Data-Driven Development: Transforming complex agricultural research and interventions into actionable economic and welfare effects, empowering development.
 
-![reviews](../../img/ranks.jpg)
+![reviews](../../img/rank2026.jpg)
 
 Three decades of industry experience in teaching research and community development as Head of Department, Industrial Liaison Officer, Dean, Director, Consultant, Church and Community leader.
