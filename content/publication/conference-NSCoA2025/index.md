@@ -1,10 +1,6 @@
 ---
 abstract:
-  A Recent study conducted in 12 states of Nigeria among 1544 farming households shows resilience is uneven across socio-economic and infrastructural characteristics (Figure 1). Households with access to insurance, modern technologies, extension services, cooperative membership, diversified income, better roads and formal education exhibit higher predicted resilience; those relying on subsistence activities, lacking credit access or located in communities with seasonal roads show lower resilience (Fig. 2). Specifically,
-•	Fragile outcomes dominate when vulnerability is high and safety nets (insurance, extension) are weak.
-•	Resilient outcomes increase with insurance, frequent extension, and in the South.
-•	Market structure influences resilience pathways.
-Policy actions that support affordable risk-sharing (insurance/cooperatives), improve market & road access, strengthen extension/technology transfer, and expand targeted credit and diversification support are likely to deliver the largest, fastest gains in household resilience. All recommendations below are grounded in modelled associations and visual evidence.
+  A Recent study conducted in 12 states of Nigeria among 1544 farming households shows resilience is uneven across socio-economic and infrastructural characteristics (Figure 1). Households with access to insurance, modern technologies, extension services, cooperative membership, diversified income, better roads and formal education exhibit higher predicted resilience; those relying on subsistence activities, lacking credit access or located in communities with seasonal roads show lower resilience (Fig. 2). Specifically, fragile outcomes dominate when vulnerability is high and safety nets (insurance, extension) are weak; resilient outcomes increase with insurance, frequent extension, and in the South; market structure influences resilience pathways. Policy actions that support affordable risk-sharing (insurance/cooperatives), improve market & road access, strengthen extension/technology transfer, and expand targeted credit and diversification support are likely to deliver the largest, fastest gains in household resilience. All recommendations below are grounded in modelled associations and visual evidence.
 authors:
 - H. Sallawu
 - S. Adebonojo
