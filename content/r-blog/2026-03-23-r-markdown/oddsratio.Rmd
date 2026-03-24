@@ -1,0 +1,188 @@
+---
+title: "_odds_summary_: Turning Probabilistic Estimates into Clear, Decision-Ready Insights"
+output:
+  prettydoc::html_pretty:
+    theme: cayman #tactile, architect, leonids, hpstr
+    highlight: vignette #github
+    math: katex #latex
+  html_document: default
+  word_document: default
+  pdf_document: 
+    latex_engine: xelatex
+description: |
+  This blog is about **odds_summary** for computing odds ratio of binary and categorical models!
+author:
+  - name: Job Nmadu
+    url: https://jobnmadu.com/
+categories:
+  - R
+date: "2026-03-23T01:00:00Z"
+tags: [RStats, odds Ratio, Percentage change, Significant variables, Data Science, Machine Learning]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(tidy      = "styler",
+                      fig.align = "center",
+                      comment   = NA,
+                      warning   = FALSE,
+                      error     = FALSE,
+                      message   = FALSE,
+                      collapse  = FALSE,
+                      out.width = "100%",
+                      dev = "ragg_png", #<- prevent default Windows device to
+                      # render plots
+                      dpi       = 132,
+                      echo      = TRUE)
+```
+
+# Introduction
+
+Model tuning and estimation has evolved from simple extrapolation to sophisticated probabilistic modeling frameworks. In contemporary data science, decision-makers require more than estimates, the need for clear statements about likelihood, risk, and uncertainty are critical to correct decision-making. However, despite the advances in predictive modeling, there is a persistent limitation of making quick and robust decisions from the estimated probabilities. The estimates are often not meaningfully interpreted. This is where the odds_summary function becomes strategically important. It converts probabilistic outputs into structured summaries that directly support:
+
+> •	decision-making 
+
+> •	risk communication 
+
+> •	model validation 
+
+> •	reproducible research 
+
+In practical terms, it turns numbers into evidence.
+
+The function is implemented as follows: 
+
+> odds_summary(model)  
+
+where:
+
+`model` An R object of estimates from models covered. For now only glm, multimon and polr models are covered.
+
+## Implement the function
+
+```{r}
+
+library(Dyn4cast)
+library(tidyverse)
+
+```
+
+### Ordered Logistic Model
+
+```{r}
+library(MASS)
+
+options(contrasts = c("contr.treatment", "contr.poly"))
+house.plr <- polr(Sat ~ Infl + Type + Cont, weights = Freq, data = housing)
+modelsummary::datasummary_df(odds_summary(house.plr))
+```
+
+## glm models
+
+```{r}
+counts <- c(18,17,15,20,10,20,25,13,12)
+outcome <- gl(3,1,9)
+treatment <- gl(3,3)
+ddc <- data.frame(treatment, outcome, counts) # showing data
+glm.D93 <- glm(counts ~ ., data = ddc, family = poisson())
+modelsummary::datasummary_df(odds_summary(glm.D93))
+
+```
+
+
+
+```{r}
+
+anorex.1 <- glm(Postwt ~ Prewt + Treat + offset(Prewt),
+                family = gaussian, data = anorexia)
+modelsummary::datasummary_df(odds_summary(anorex.1))
+```
+
+
+```{r}
+clotting <- data.frame(
+  u = c(5,10,15,20,30,40,60,80,100),
+  lot1 = c(118,58,42,35,27,25,21,19,18),
+  lot2 = c(69,35,26,21,18,16,13,12,12))
+lot1 <- glm(lot1 ~ log(u), data = clotting, family = Gamma)
+modelsummary::datasummary_df(odds_summary(lot1))
+```
+
+
+```{r}
+lot2 <- glm(lot2 ~ log(u), data = clotting, family = Gamma)
+modelsummary::datasummary_df(odds_summary(lot2))
+```
+
+
+```{r}
+x <- rnorm(100)
+y <- rpois(100, exp(1+x))
+
+lm2 <- glm(y ~ x, family = quasi(variance = "mu", link = "log"))
+modelsummary::datasummary_df(odds_summary(lm2))
+```
+
+
+```{r}
+lm3 <- glm(y ~ x, family = poisson)
+modelsummary::datasummary_df(odds_summary(lm3))
+```
+
+## mlogit models
+
+```{r}
+library(mlogit)
+data("Fishing", package = "mlogit")
+Fish <- dfidx(Fishing, varying = 2:9, shape = "wide", choice = "mode")
+
+## a pure "conditional" model
+mml <- mlogit(mode ~ price + catch, data = Fish)
+modelsummary::datasummary_df(odds_summary(mml))
+```
+
+## Multinomial Logistic model
+
+For multinomial logistic regression, each of the measure is a data.frame, so the summary is a list of data frames. The summary is for each of the levels of the dependent variable.
+
+```{r}
+library(nnet)
+
+tinom <- multinom(Species ~ Petal.Length + Petal.Width + Sepal.Length
+                  + Sepal.Width, trace = FALSE, data = iris)
+
+odds_summary(tinom)
+
+```
+
+# Conclusion
+
+The odds_summary function represents a critical advancement in the practical interpretation of probabilistic estimates within the _Dyn4cast_
+environment. Its significance lies not in computation alone, but in converting statistical output into actionable knowledge. In econometric modelling systems, prediction without interpretation is incomplete. The odds_summary function closes that gap.
+
+
+# Attrition
+
+```
+cite this article as:
+
+Nmadu J (2025). odds_summary: Turning Probabilistic Estimates into Clear, Decision-Ready Insights. https://www.jobnmadu.com/r-blog/.
+
+To cite package 'Dyn4cast' in publications use:
+
+  Nmadu J (2025). _Dyn4cast: Dynamic Modeling and Machine Learning
+  Environment_. R package version 11.11.26,
+  <https://github.com/JobNmadu/Dyn4cast>.
+
+A BibTeX entry for LaTeX users is
+
+  @Manual{,
+    title = {_Dyn4cast: Dynamic Modeling and Machine Learning Environment_},
+    author = {Job Nmadu},
+    year = {2025},
+    note = {R package version 11.11.26},
+    url = {https://github.com/JobNmadu/Dyn4cast},
+  }
+```
+
+
+Welcome to Data Science and Machine Learning!

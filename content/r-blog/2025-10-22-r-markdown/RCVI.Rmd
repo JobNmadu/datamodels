@@ -157,7 +157,7 @@ pivot_longer(cols = everything()) %>%
  group_by(name) %>%
  mutate(row = row_number()) %>%
  pivot_wider(names_from = name, values_from = value) %>%
- select(-row) %>%
+ dplyr::select(-row) %>%
  unnest(cols = everything())
 
  ranking <- c("Serious constraint", "Constraint",
@@ -208,7 +208,7 @@ Nmadu J (2025).Stability and Fragility: Assessing Resilience Capacity and Vulner
 To cite package 'Dyn4cast' in publications use:
 
   Nmadu J (2025). _Dyn4cast: Dynamic Modeling and Machine Learning
-  Environment_. R package version 11.11.24,
+  Environment_. R package version 11.11.26,
   <https://github.com/JobNmadu/Dyn4cast>.
 
 A BibTeX entry for LaTeX users is
@@ -217,7 +217,7 @@ A BibTeX entry for LaTeX users is
     title = {_Dyn4cast: Dynamic Modeling and Machine Learning Environment_},
     author = {Job Nmadu},
     year = {2025},
-    note = {R package version 11.11.24},
+    note = {R package version 11.11.26},
     url = {https://github.com/JobNmadu/Dyn4cast},
   }
 ```

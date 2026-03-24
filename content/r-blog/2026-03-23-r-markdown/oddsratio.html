@@ -1,0 +1,1044 @@
+---
+title: "_odds_summary_: Turning Probabilistic Estimates into Clear, Decision-Ready Insights"
+output:
+  prettydoc::html_pretty:
+    theme: cayman #tactile, architect, leonids, hpstr
+    highlight: vignette #github
+    math: katex #latex
+  html_document: default
+  word_document: default
+  pdf_document: 
+    latex_engine: xelatex
+description: |
+  This blog is about **odds_summary** for computing odds ratio of binary and categorical models!
+author:
+  - name: Job Nmadu
+    url: https://jobnmadu.com/
+categories:
+  - R
+date: "2026-03-23T01:00:00Z"
+tags: [RStats, odds Ratio, Percentage change, Significant variables, Data Science, Machine Learning]
+---
+
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>Model tuning and estimation has evolved from simple extrapolation to sophisticated probabilistic modeling frameworks. In contemporary data science, decision-makers require more than estimates, the need for clear statements about likelihood, risk, and uncertainty are critical to correct decision-making. However, despite the advances in predictive modeling, there is a persistent limitation of making quick and robust decisions from the estimated probabilities. The estimates are often not meaningfully interpreted. This is where the odds_summary function becomes strategically important. It converts probabilistic outputs into structured summaries that directly support:</p>
+<blockquote>
+<p>• decision-making</p>
+</blockquote>
+<blockquote>
+<p>• risk communication</p>
+</blockquote>
+<blockquote>
+<p>• model validation</p>
+</blockquote>
+<blockquote>
+<p>• reproducible research</p>
+</blockquote>
+<p>In practical terms, it turns numbers into evidence.</p>
+<p>The function is implemented as follows:</p>
+<blockquote>
+<p>odds_summary(model)</p>
+</blockquote>
+<p>where:</p>
+<p><code>model</code> An R object of estimates from models covered. For now only glm, multimon and polr models are covered.</p>
+<div id="implement-the-function" class="section level2">
+<h2>Implement the function</h2>
+<pre class="r"><code>library(Dyn4cast)
+library(tidyverse)</code></pre>
+<div id="ordered-logistic-model" class="section level3">
+<h3>Ordered Logistic Model</h3>
+<pre class="r"><code>library(MASS)
+
+options(contrasts = c(&quot;contr.treatment&quot;, &quot;contr.poly&quot;))
+house.plr &lt;- polr(Sat ~ Infl + Type + Cont, weights = Freq, data = housing)
+modelsummary::datasummary_df(odds_summary(house.plr))</code></pre>
+<!-- preamble start -->
+
+    <script src="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.js"></script>
+
+    <script>
+      // Create table-specific functions using external factory
+      const tableFns_quqh9kc4tmvk08sdgu8u = TinyTable.createTableFunctions("tinytable_quqh9kc4tmvk08sdgu8u");
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: '8', j: 1 }, { i: '8', j: 2 }, { i: '8', j: 3 }, { i: '8', j: 4 }, { i: '8', j: 5 }, { i: '8', j: 6 }, { i: '8', j: 7 }, { i: '8', j: 8 }, { i: '8', j: 9 }, { i: '8', j: 10 }, { i: '8', j: 11 } ], css_id: 'tinytable_css_moc6bbl5xil62zl8965l',}, 
+          { positions: [ { i: '1', j: 1 }, { i: '2', j: 1 }, { i: '3', j: 1 }, { i: '4', j: 1 }, { i: '5', j: 1 }, { i: '6', j: 1 }, { i: '7', j: 1 }, { i: '1', j: 2 }, { i: '2', j: 2 }, { i: '3', j: 2 }, { i: '4', j: 2 }, { i: '5', j: 2 }, { i: '6', j: 2 }, { i: '7', j: 2 }, { i: '1', j: 3 }, { i: '2', j: 3 }, { i: '3', j: 3 }, { i: '4', j: 3 }, { i: '5', j: 3 }, { i: '6', j: 3 }, { i: '7', j: 3 }, { i: '1', j: 4 }, { i: '2', j: 4 }, { i: '3', j: 4 }, { i: '4', j: 4 }, { i: '5', j: 4 }, { i: '6', j: 4 }, { i: '7', j: 4 }, { i: '1', j: 5 }, { i: '2', j: 5 }, { i: '3', j: 5 }, { i: '4', j: 5 }, { i: '5', j: 5 }, { i: '6', j: 5 }, { i: '7', j: 5 }, { i: '1', j: 6 }, { i: '2', j: 6 }, { i: '3', j: 6 }, { i: '4', j: 6 }, { i: '5', j: 6 }, { i: '6', j: 6 }, { i: '7', j: 6 }, { i: '1', j: 7 }, { i: '2', j: 7 }, { i: '3', j: 7 }, { i: '4', j: 7 }, { i: '5', j: 7 }, { i: '6', j: 7 }, { i: '7', j: 7 }, { i: '1', j: 8 }, { i: '2', j: 8 }, { i: '3', j: 8 }, { i: '4', j: 8 }, { i: '5', j: 8 }, { i: '6', j: 8 }, { i: '7', j: 8 }, { i: '1', j: 9 }, { i: '2', j: 9 }, { i: '3', j: 9 }, { i: '4', j: 9 }, { i: '5', j: 9 }, { i: '6', j: 9 }, { i: '7', j: 9 }, { i: '1', j: 10 }, { i: '2', j: 10 }, { i: '3', j: 10 }, { i: '4', j: 10 }, { i: '5', j: 10 }, { i: '6', j: 10 }, { i: '7', j: 10 }, { i: '1', j: 11 }, { i: '2', j: 11 }, { i: '3', j: 11 }, { i: '4', j: 11 }, { i: '5', j: 11 }, { i: '6', j: 11 }, { i: '7', j: 11 } ], css_id: 'tinytable_css_56q7q08t2wrkqlt8pf1o',}, 
+          { positions: [ { i: '0', j: 1 }, { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 }, { i: '0', j: 5 }, { i: '0', j: 6 }, { i: '0', j: 7 }, { i: '0', j: 8 }, { i: '0', j: 9 }, { i: '0', j: 10 }, { i: '0', j: 11 } ], css_id: 'tinytable_css_shpcgrkwbldz63d3z72j',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  tableFns_quqh9kc4tmvk08sdgu8u.styleCell(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.css">
+    <style>
+    /* tinytable css entries after */
+    #tinytable_quqh9kc4tmvk08sdgu8u td.tinytable_css_moc6bbl5xil62zl8965l, #tinytable_quqh9kc4tmvk08sdgu8u th.tinytable_css_moc6bbl5xil62zl8965l {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    #tinytable_quqh9kc4tmvk08sdgu8u td.tinytable_css_56q7q08t2wrkqlt8pf1o, #tinytable_quqh9kc4tmvk08sdgu8u th.tinytable_css_56q7q08t2wrkqlt8pf1o { text-align: left }
+    #tinytable_quqh9kc4tmvk08sdgu8u td.tinytable_css_shpcgrkwbldz63d3z72j, #tinytable_quqh9kc4tmvk08sdgu8u th.tinytable_css_shpcgrkwbldz63d3z72j {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    </style>
+    <div class="container">
+      <table class="tinytable" id="tinytable_quqh9kc4tmvk08sdgu8u" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing='true'>
+        
+        <thead>
+              <tr>
+                <th scope="col" data-row="0" data-col="1">Variables</th>
+                <th scope="col" data-row="0" data-col="2">Coefficient</th>
+                <th scope="col" data-row="0" data-col="3">Std Error</th>
+                <th scope="col" data-row="0" data-col="4">t value</th>
+                <th scope="col" data-row="0" data-col="5">p value</th>
+                <th scope="col" data-row="0" data-col="6">Coef Sig</th>
+                <th scope="col" data-row="0" data-col="7">Odds_ratio</th>
+                <th scope="col" data-row="0" data-col="8">%</th>
+                <th scope="col" data-row="0" data-col="9">Odds Sig</th>
+                <th scope="col" data-row="0" data-col="10">CI_lower</th>
+                <th scope="col" data-row="0" data-col="11">CI_upper</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td data-row="1" data-col="1">InflMedium</td>
+                  <td data-row="1" data-col="2">0.57</td>
+                  <td data-row="1" data-col="3">0.10</td>
+                  <td data-row="1" data-col="4">5.41</td>
+                  <td data-row="1" data-col="5">0.00</td>
+                  <td data-row="1" data-col="6">0.566***</td>
+                  <td data-row="1" data-col="7">1.76</td>
+                  <td data-row="1" data-col="8">76.19</td>
+                  <td data-row="1" data-col="9">1.762***</td>
+                  <td data-row="1" data-col="10">1.44</td>
+                  <td data-row="1" data-col="11">2.16</td>
+                </tr>
+                <tr>
+                  <td data-row="2" data-col="1">InflHigh</td>
+                  <td data-row="2" data-col="2">1.29</td>
+                  <td data-row="2" data-col="3">0.13</td>
+                  <td data-row="2" data-col="4">10.14</td>
+                  <td data-row="2" data-col="5">0.00</td>
+                  <td data-row="2" data-col="6">1.289***</td>
+                  <td data-row="2" data-col="7">3.63</td>
+                  <td data-row="2" data-col="8">262.85</td>
+                  <td data-row="2" data-col="9">3.628***</td>
+                  <td data-row="2" data-col="10">2.83</td>
+                  <td data-row="2" data-col="11">4.66</td>
+                </tr>
+                <tr>
+                  <td data-row="3" data-col="1">TypeApartment</td>
+                  <td data-row="3" data-col="2">-0.57</td>
+                  <td data-row="3" data-col="3">0.12</td>
+                  <td data-row="3" data-col="4">-4.80</td>
+                  <td data-row="3" data-col="5">0.00</td>
+                  <td data-row="3" data-col="6">-0.572***</td>
+                  <td data-row="3" data-col="7">0.56</td>
+                  <td data-row="3" data-col="8">-43.58</td>
+                  <td data-row="3" data-col="9">0.564***</td>
+                  <td data-row="3" data-col="10">0.45</td>
+                  <td data-row="3" data-col="11">0.71</td>
+                </tr>
+                <tr>
+                  <td data-row="4" data-col="1">TypeAtrium</td>
+                  <td data-row="4" data-col="2">-0.37</td>
+                  <td data-row="4" data-col="3">0.16</td>
+                  <td data-row="4" data-col="4">-2.36</td>
+                  <td data-row="4" data-col="5">0.02</td>
+                  <td data-row="4" data-col="6">-0.366*</td>
+                  <td data-row="4" data-col="7">0.69</td>
+                  <td data-row="4" data-col="8">-30.66</td>
+                  <td data-row="4" data-col="9">0.693*</td>
+                  <td data-row="4" data-col="10">0.51</td>
+                  <td data-row="4" data-col="11">0.94</td>
+                </tr>
+                <tr>
+                  <td data-row="5" data-col="1">TypeTerrace</td>
+                  <td data-row="5" data-col="2">-1.09</td>
+                  <td data-row="5" data-col="3">0.15</td>
+                  <td data-row="5" data-col="4">-7.20</td>
+                  <td data-row="5" data-col="5">0.00</td>
+                  <td data-row="5" data-col="6">-1.091***</td>
+                  <td data-row="5" data-col="7">0.34</td>
+                  <td data-row="5" data-col="8">-66.41</td>
+                  <td data-row="5" data-col="9">0.336***</td>
+                  <td data-row="5" data-col="10">0.25</td>
+                  <td data-row="5" data-col="11">0.45</td>
+                </tr>
+                <tr>
+                  <td data-row="6" data-col="1">ContHigh</td>
+                  <td data-row="6" data-col="2">0.36</td>
+                  <td data-row="6" data-col="3">0.10</td>
+                  <td data-row="6" data-col="4">3.77</td>
+                  <td data-row="6" data-col="5">0.00</td>
+                  <td data-row="6" data-col="6">0.36***</td>
+                  <td data-row="6" data-col="7">1.43</td>
+                  <td data-row="6" data-col="8">43.37</td>
+                  <td data-row="6" data-col="9">1.434***</td>
+                  <td data-row="6" data-col="10">1.19</td>
+                  <td data-row="6" data-col="11">1.73</td>
+                </tr>
+                <tr>
+                  <td data-row="7" data-col="1">Low|Medium</td>
+                  <td data-row="7" data-col="2">-0.50</td>
+                  <td data-row="7" data-col="3">0.12</td>
+                  <td data-row="7" data-col="4">-3.97</td>
+                  <td data-row="7" data-col="5">0.00</td>
+                  <td data-row="7" data-col="6">-0.496***</td>
+                  <td data-row="7" data-col="7">0.61</td>
+                  <td data-row="7" data-col="8">-39.11</td>
+                  <td data-row="7" data-col="9">0.609***</td>
+                  <td data-row="7" data-col="10">-0.74</td>
+                  <td data-row="7" data-col="11">-0.25</td>
+                </tr>
+                <tr>
+                  <td data-row="8" data-col="1">Medium|High</td>
+                  <td data-row="8" data-col="2">0.69</td>
+                  <td data-row="8" data-col="3">0.13</td>
+                  <td data-row="8" data-col="4">5.50</td>
+                  <td data-row="8" data-col="5">0.00</td>
+                  <td data-row="8" data-col="6">0.691***</td>
+                  <td data-row="8" data-col="7">2.00</td>
+                  <td data-row="8" data-col="8">99.51</td>
+                  <td data-row="8" data-col="9">1.995***</td>
+                  <td data-row="8" data-col="10">0.44</td>
+                  <td data-row="8" data-col="11">0.94</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+</div>
+</div>
+<div id="glm-models" class="section level2">
+<h2>glm models</h2>
+<pre class="r"><code>counts &lt;- c(18, 17, 15, 20, 10, 20, 25, 13, 12)
+outcome &lt;- gl(3, 1, 9)
+treatment &lt;- gl(3, 3)
+ddc &lt;- data.frame(treatment, outcome, counts) # showing data
+glm.D93 &lt;- glm(counts ~ ., data = ddc, family = poisson())
+modelsummary::datasummary_df(odds_summary(glm.D93))</code></pre>
+<!-- preamble start -->
+
+    <script src="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.js"></script>
+
+    <script>
+      // Create table-specific functions using external factory
+      const tableFns_sdux3f12husvo1z26dz1 = TinyTable.createTableFunctions("tinytable_sdux3f12husvo1z26dz1");
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: '5', j: 1 }, { i: '5', j: 2 }, { i: '5', j: 3 }, { i: '5', j: 4 }, { i: '5', j: 5 }, { i: '5', j: 6 }, { i: '5', j: 7 }, { i: '5', j: 8 }, { i: '5', j: 9 }, { i: '5', j: 10 }, { i: '5', j: 11 } ], css_id: 'tinytable_css_nc7e6fm2c7ku191quum1',}, 
+          { positions: [ { i: '1', j: 1 }, { i: '2', j: 1 }, { i: '3', j: 1 }, { i: '4', j: 1 }, { i: '1', j: 2 }, { i: '2', j: 2 }, { i: '3', j: 2 }, { i: '4', j: 2 }, { i: '1', j: 3 }, { i: '2', j: 3 }, { i: '3', j: 3 }, { i: '4', j: 3 }, { i: '1', j: 4 }, { i: '2', j: 4 }, { i: '3', j: 4 }, { i: '4', j: 4 }, { i: '1', j: 5 }, { i: '2', j: 5 }, { i: '3', j: 5 }, { i: '4', j: 5 }, { i: '1', j: 6 }, { i: '2', j: 6 }, { i: '3', j: 6 }, { i: '4', j: 6 }, { i: '1', j: 7 }, { i: '2', j: 7 }, { i: '3', j: 7 }, { i: '4', j: 7 }, { i: '1', j: 8 }, { i: '2', j: 8 }, { i: '3', j: 8 }, { i: '4', j: 8 }, { i: '1', j: 9 }, { i: '2', j: 9 }, { i: '3', j: 9 }, { i: '4', j: 9 }, { i: '1', j: 10 }, { i: '2', j: 10 }, { i: '3', j: 10 }, { i: '4', j: 10 }, { i: '1', j: 11 }, { i: '2', j: 11 }, { i: '3', j: 11 }, { i: '4', j: 11 } ], css_id: 'tinytable_css_12x4u2z5q2nl4bmegoft',}, 
+          { positions: [ { i: '0', j: 1 }, { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 }, { i: '0', j: 5 }, { i: '0', j: 6 }, { i: '0', j: 7 }, { i: '0', j: 8 }, { i: '0', j: 9 }, { i: '0', j: 10 }, { i: '0', j: 11 } ], css_id: 'tinytable_css_kn39bxnmwc4lxomrctd5',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  tableFns_sdux3f12husvo1z26dz1.styleCell(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.css">
+    <style>
+    /* tinytable css entries after */
+    #tinytable_sdux3f12husvo1z26dz1 td.tinytable_css_nc7e6fm2c7ku191quum1, #tinytable_sdux3f12husvo1z26dz1 th.tinytable_css_nc7e6fm2c7ku191quum1 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    #tinytable_sdux3f12husvo1z26dz1 td.tinytable_css_12x4u2z5q2nl4bmegoft, #tinytable_sdux3f12husvo1z26dz1 th.tinytable_css_12x4u2z5q2nl4bmegoft { text-align: left }
+    #tinytable_sdux3f12husvo1z26dz1 td.tinytable_css_kn39bxnmwc4lxomrctd5, #tinytable_sdux3f12husvo1z26dz1 th.tinytable_css_kn39bxnmwc4lxomrctd5 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    </style>
+    <div class="container">
+      <table class="tinytable" id="tinytable_sdux3f12husvo1z26dz1" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing='true'>
+        
+        <thead>
+              <tr>
+                <th scope="col" data-row="0" data-col="1">Variables</th>
+                <th scope="col" data-row="0" data-col="2">Coefficient</th>
+                <th scope="col" data-row="0" data-col="3">Std Error</th>
+                <th scope="col" data-row="0" data-col="4">t value</th>
+                <th scope="col" data-row="0" data-col="5">p value</th>
+                <th scope="col" data-row="0" data-col="6">Coef Sig</th>
+                <th scope="col" data-row="0" data-col="7">Odds_ratio</th>
+                <th scope="col" data-row="0" data-col="8">%</th>
+                <th scope="col" data-row="0" data-col="9">Odds Sig</th>
+                <th scope="col" data-row="0" data-col="10">CI_lower</th>
+                <th scope="col" data-row="0" data-col="11">CI_upper</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td data-row="1" data-col="1">(Intercept)</td>
+                  <td data-row="1" data-col="2">3.04</td>
+                  <td data-row="1" data-col="3">0.17</td>
+                  <td data-row="1" data-col="4">17.81</td>
+                  <td data-row="1" data-col="5">0.00</td>
+                  <td data-row="1" data-col="6">3.045***</td>
+                  <td data-row="1" data-col="7">21.00</td>
+                  <td data-row="1" data-col="8">2000.00</td>
+                  <td data-row="1" data-col="9">21***</td>
+                  <td data-row="1" data-col="10">14.82</td>
+                  <td data-row="1" data-col="11">28.98</td>
+                </tr>
+                <tr>
+                  <td data-row="2" data-col="1">treatment2</td>
+                  <td data-row="2" data-col="2">0.00</td>
+                  <td data-row="2" data-col="3">0.20</td>
+                  <td data-row="2" data-col="4">0.00</td>
+                  <td data-row="2" data-col="5">1.00</td>
+                  <td data-row="2" data-col="6">0</td>
+                  <td data-row="2" data-col="7">1.00</td>
+                  <td data-row="2" data-col="8">0.00</td>
+                  <td data-row="2" data-col="9">1</td>
+                  <td data-row="2" data-col="10">0.67</td>
+                  <td data-row="2" data-col="11">1.48</td>
+                </tr>
+                <tr>
+                  <td data-row="3" data-col="1">treatment3</td>
+                  <td data-row="3" data-col="2">0.00</td>
+                  <td data-row="3" data-col="3">0.20</td>
+                  <td data-row="3" data-col="4">0.00</td>
+                  <td data-row="3" data-col="5">1.00</td>
+                  <td data-row="3" data-col="6">0</td>
+                  <td data-row="3" data-col="7">1.00</td>
+                  <td data-row="3" data-col="8">0.00</td>
+                  <td data-row="3" data-col="9">1</td>
+                  <td data-row="3" data-col="10">0.67</td>
+                  <td data-row="3" data-col="11">1.48</td>
+                </tr>
+                <tr>
+                  <td data-row="4" data-col="1">outcome2</td>
+                  <td data-row="4" data-col="2">-0.45</td>
+                  <td data-row="4" data-col="3">0.20</td>
+                  <td data-row="4" data-col="4">-2.25</td>
+                  <td data-row="4" data-col="5">0.02</td>
+                  <td data-row="4" data-col="6">-0.454*</td>
+                  <td data-row="4" data-col="7">0.63</td>
+                  <td data-row="4" data-col="8">-36.51</td>
+                  <td data-row="4" data-col="9">0.635*</td>
+                  <td data-row="4" data-col="10">0.42</td>
+                  <td data-row="4" data-col="11">0.94</td>
+                </tr>
+                <tr>
+                  <td data-row="5" data-col="1">outcome3</td>
+                  <td data-row="5" data-col="2">-0.29</td>
+                  <td data-row="5" data-col="3">0.19</td>
+                  <td data-row="5" data-col="4">-1.52</td>
+                  <td data-row="5" data-col="5">0.13</td>
+                  <td data-row="5" data-col="6">-0.293</td>
+                  <td data-row="5" data-col="7">0.75</td>
+                  <td data-row="5" data-col="8">-25.40</td>
+                  <td data-row="5" data-col="9">0.746</td>
+                  <td data-row="5" data-col="10">0.51</td>
+                  <td data-row="5" data-col="11">1.09</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+<pre class="r"><code>anorex.1 &lt;- glm(Postwt ~ Prewt + Treat + offset(Prewt),
+  family = gaussian, data = anorexia
+)
+modelsummary::datasummary_df(odds_summary(anorex.1))</code></pre>
+<!-- preamble start -->
+
+    <script src="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.js"></script>
+
+    <script>
+      // Create table-specific functions using external factory
+      const tableFns_kdkg11wpqu8tuxxx1fs5 = TinyTable.createTableFunctions("tinytable_kdkg11wpqu8tuxxx1fs5");
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: '4', j: 1 }, { i: '4', j: 2 }, { i: '4', j: 3 }, { i: '4', j: 4 }, { i: '4', j: 5 }, { i: '4', j: 6 }, { i: '4', j: 7 }, { i: '4', j: 8 }, { i: '4', j: 9 }, { i: '4', j: 10 }, { i: '4', j: 11 } ], css_id: 'tinytable_css_ptz2jd1nqeu1v1y9f09r',}, 
+          { positions: [ { i: '1', j: 1 }, { i: '2', j: 1 }, { i: '3', j: 1 }, { i: '1', j: 2 }, { i: '2', j: 2 }, { i: '3', j: 2 }, { i: '1', j: 3 }, { i: '2', j: 3 }, { i: '3', j: 3 }, { i: '1', j: 4 }, { i: '2', j: 4 }, { i: '3', j: 4 }, { i: '1', j: 5 }, { i: '2', j: 5 }, { i: '3', j: 5 }, { i: '1', j: 6 }, { i: '2', j: 6 }, { i: '3', j: 6 }, { i: '1', j: 7 }, { i: '2', j: 7 }, { i: '3', j: 7 }, { i: '1', j: 8 }, { i: '2', j: 8 }, { i: '3', j: 8 }, { i: '1', j: 9 }, { i: '2', j: 9 }, { i: '3', j: 9 }, { i: '1', j: 10 }, { i: '2', j: 10 }, { i: '3', j: 10 }, { i: '1', j: 11 }, { i: '2', j: 11 }, { i: '3', j: 11 } ], css_id: 'tinytable_css_tdk99op4v0pbltksoqcs',}, 
+          { positions: [ { i: '0', j: 1 }, { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 }, { i: '0', j: 5 }, { i: '0', j: 6 }, { i: '0', j: 7 }, { i: '0', j: 8 }, { i: '0', j: 9 }, { i: '0', j: 10 }, { i: '0', j: 11 } ], css_id: 'tinytable_css_s944cp41mi1le4kyxigu',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  tableFns_kdkg11wpqu8tuxxx1fs5.styleCell(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.css">
+    <style>
+    /* tinytable css entries after */
+    #tinytable_kdkg11wpqu8tuxxx1fs5 td.tinytable_css_ptz2jd1nqeu1v1y9f09r, #tinytable_kdkg11wpqu8tuxxx1fs5 th.tinytable_css_ptz2jd1nqeu1v1y9f09r {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    #tinytable_kdkg11wpqu8tuxxx1fs5 td.tinytable_css_tdk99op4v0pbltksoqcs, #tinytable_kdkg11wpqu8tuxxx1fs5 th.tinytable_css_tdk99op4v0pbltksoqcs { text-align: left }
+    #tinytable_kdkg11wpqu8tuxxx1fs5 td.tinytable_css_s944cp41mi1le4kyxigu, #tinytable_kdkg11wpqu8tuxxx1fs5 th.tinytable_css_s944cp41mi1le4kyxigu {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    </style>
+    <div class="container">
+      <table class="tinytable" id="tinytable_kdkg11wpqu8tuxxx1fs5" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing='true'>
+        
+        <thead>
+              <tr>
+                <th scope="col" data-row="0" data-col="1">Variables</th>
+                <th scope="col" data-row="0" data-col="2">Coefficient</th>
+                <th scope="col" data-row="0" data-col="3">Std Error</th>
+                <th scope="col" data-row="0" data-col="4">t value</th>
+                <th scope="col" data-row="0" data-col="5">p value</th>
+                <th scope="col" data-row="0" data-col="6">Coef Sig</th>
+                <th scope="col" data-row="0" data-col="7">Odds_ratio</th>
+                <th scope="col" data-row="0" data-col="8">%</th>
+                <th scope="col" data-row="0" data-col="9">Odds Sig</th>
+                <th scope="col" data-row="0" data-col="10">CI_lower</th>
+                <th scope="col" data-row="0" data-col="11">CI_upper</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td data-row="1" data-col="1">(Intercept)</td>
+                  <td data-row="1" data-col="2">49.77</td>
+                  <td data-row="1" data-col="3">13.39</td>
+                  <td data-row="1" data-col="4">3.72</td>
+                  <td data-row="1" data-col="5">0.00</td>
+                  <td data-row="1" data-col="6">49.771***</td>
+                  <td data-row="1" data-col="7">4.123994e+21</td>
+                  <td data-row="1" data-col="8">4.123994e+23</td>
+                  <td data-row="1" data-col="9">4.12399379732274e+21***</td>
+                  <td data-row="1" data-col="10">1.647835e+10</td>
+                  <td data-row="1" data-col="11">1.032101e+33</td>
+                </tr>
+                <tr>
+                  <td data-row="2" data-col="1">Prewt</td>
+                  <td data-row="2" data-col="2">-0.57</td>
+                  <td data-row="2" data-col="3">0.16</td>
+                  <td data-row="2" data-col="4">-3.51</td>
+                  <td data-row="2" data-col="5">0.00</td>
+                  <td data-row="2" data-col="6">-0.566***</td>
+                  <td data-row="2" data-col="7">5.700000e-01</td>
+                  <td data-row="2" data-col="8">-4.319000e+01</td>
+                  <td data-row="2" data-col="9">0.568***</td>
+                  <td data-row="2" data-col="10">4.100000e-01</td>
+                  <td data-row="2" data-col="11">7.800000e-01</td>
+                </tr>
+                <tr>
+                  <td data-row="3" data-col="1">TreatCont</td>
+                  <td data-row="3" data-col="2">-4.10</td>
+                  <td data-row="3" data-col="3">1.89</td>
+                  <td data-row="3" data-col="4">-2.16</td>
+                  <td data-row="3" data-col="5">0.03</td>
+                  <td data-row="3" data-col="6">-4.097*</td>
+                  <td data-row="3" data-col="7">2.000000e-02</td>
+                  <td data-row="3" data-col="8">-9.834000e+01</td>
+                  <td data-row="3" data-col="9">0.017*</td>
+                  <td data-row="3" data-col="10">0.000000e+00</td>
+                  <td data-row="3" data-col="11">6.800000e-01</td>
+                </tr>
+                <tr>
+                  <td data-row="4" data-col="1">TreatFT</td>
+                  <td data-row="4" data-col="2">4.56</td>
+                  <td data-row="4" data-col="3">2.13</td>
+                  <td data-row="4" data-col="4">2.14</td>
+                  <td data-row="4" data-col="5">0.04</td>
+                  <td data-row="4" data-col="6">4.563*</td>
+                  <td data-row="4" data-col="7">9.588000e+01</td>
+                  <td data-row="4" data-col="8">9.487670e+03</td>
+                  <td data-row="4" data-col="9">95.877*</td>
+                  <td data-row="4" data-col="10">1.460000e+00</td>
+                  <td data-row="4" data-col="11">6.274970e+03</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+<pre class="r"><code>clotting &lt;- data.frame(
+  u = c(5, 10, 15, 20, 30, 40, 60, 80, 100),
+  lot1 = c(118, 58, 42, 35, 27, 25, 21, 19, 18),
+  lot2 = c(69, 35, 26, 21, 18, 16, 13, 12, 12)
+)
+lot1 &lt;- glm(lot1 ~ log(u), data = clotting, family = Gamma)
+modelsummary::datasummary_df(odds_summary(lot1))</code></pre>
+<!-- preamble start -->
+
+    <script src="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.js"></script>
+
+    <script>
+      // Create table-specific functions using external factory
+      const tableFns_v0y4b1x5bq7ljk8436b0 = TinyTable.createTableFunctions("tinytable_v0y4b1x5bq7ljk8436b0");
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: '2', j: 1 }, { i: '2', j: 2 }, { i: '2', j: 3 }, { i: '2', j: 4 }, { i: '2', j: 5 }, { i: '2', j: 6 }, { i: '2', j: 7 }, { i: '2', j: 8 }, { i: '2', j: 9 }, { i: '2', j: 10 }, { i: '2', j: 11 } ], css_id: 'tinytable_css_3965rnv3ert0n3p1971h',}, 
+          { positions: [ { i: '1', j: 1 }, { i: '1', j: 2 }, { i: '1', j: 3 }, { i: '1', j: 4 }, { i: '1', j: 5 }, { i: '1', j: 6 }, { i: '1', j: 7 }, { i: '1', j: 8 }, { i: '1', j: 9 }, { i: '1', j: 10 }, { i: '1', j: 11 } ], css_id: 'tinytable_css_z4l3er0prnm5x3ysalqf',}, 
+          { positions: [ { i: '0', j: 1 }, { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 }, { i: '0', j: 5 }, { i: '0', j: 6 }, { i: '0', j: 7 }, { i: '0', j: 8 }, { i: '0', j: 9 }, { i: '0', j: 10 }, { i: '0', j: 11 } ], css_id: 'tinytable_css_vykcmz94cxt5sgh71jcf',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  tableFns_v0y4b1x5bq7ljk8436b0.styleCell(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.css">
+    <style>
+    /* tinytable css entries after */
+    #tinytable_v0y4b1x5bq7ljk8436b0 td.tinytable_css_3965rnv3ert0n3p1971h, #tinytable_v0y4b1x5bq7ljk8436b0 th.tinytable_css_3965rnv3ert0n3p1971h {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    #tinytable_v0y4b1x5bq7ljk8436b0 td.tinytable_css_z4l3er0prnm5x3ysalqf, #tinytable_v0y4b1x5bq7ljk8436b0 th.tinytable_css_z4l3er0prnm5x3ysalqf { text-align: left }
+    #tinytable_v0y4b1x5bq7ljk8436b0 td.tinytable_css_vykcmz94cxt5sgh71jcf, #tinytable_v0y4b1x5bq7ljk8436b0 th.tinytable_css_vykcmz94cxt5sgh71jcf {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    </style>
+    <div class="container">
+      <table class="tinytable" id="tinytable_v0y4b1x5bq7ljk8436b0" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing='true'>
+        
+        <thead>
+              <tr>
+                <th scope="col" data-row="0" data-col="1">Variables</th>
+                <th scope="col" data-row="0" data-col="2">Coefficient</th>
+                <th scope="col" data-row="0" data-col="3">Std Error</th>
+                <th scope="col" data-row="0" data-col="4">t value</th>
+                <th scope="col" data-row="0" data-col="5">p value</th>
+                <th scope="col" data-row="0" data-col="6">Coef Sig</th>
+                <th scope="col" data-row="0" data-col="7">Odds_ratio</th>
+                <th scope="col" data-row="0" data-col="8">%</th>
+                <th scope="col" data-row="0" data-col="9">Odds Sig</th>
+                <th scope="col" data-row="0" data-col="10">CI_lower</th>
+                <th scope="col" data-row="0" data-col="11">CI_upper</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td data-row="1" data-col="1">(Intercept)</td>
+                  <td data-row="1" data-col="2">-0.02</td>
+                  <td data-row="1" data-col="3">0.00</td>
+                  <td data-row="1" data-col="4">-17.85</td>
+                  <td data-row="1" data-col="5">0.00</td>
+                  <td data-row="1" data-col="6">-0.017***</td>
+                  <td data-row="1" data-col="7">0.98</td>
+                  <td data-row="1" data-col="8">-1.64</td>
+                  <td data-row="1" data-col="9">0.984***</td>
+                  <td data-row="1" data-col="10">0.98</td>
+                  <td data-row="1" data-col="11">0.99</td>
+                </tr>
+                <tr>
+                  <td data-row="2" data-col="1">log(u)</td>
+                  <td data-row="2" data-col="2">0.02</td>
+                  <td data-row="2" data-col="3">0.00</td>
+                  <td data-row="2" data-col="4">36.97</td>
+                  <td data-row="2" data-col="5">0.00</td>
+                  <td data-row="2" data-col="6">0.015***</td>
+                  <td data-row="2" data-col="7">1.02</td>
+                  <td data-row="2" data-col="8">1.55</td>
+                  <td data-row="2" data-col="9">1.015***</td>
+                  <td data-row="2" data-col="10">1.01</td>
+                  <td data-row="2" data-col="11">1.02</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+<pre class="r"><code>lot2 &lt;- glm(lot2 ~ log(u), data = clotting, family = Gamma)
+modelsummary::datasummary_df(odds_summary(lot2))</code></pre>
+<!-- preamble start -->
+
+    <script src="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.js"></script>
+
+    <script>
+      // Create table-specific functions using external factory
+      const tableFns_5rwg4aij3yfkqqngttzq = TinyTable.createTableFunctions("tinytable_5rwg4aij3yfkqqngttzq");
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: '2', j: 1 }, { i: '2', j: 2 }, { i: '2', j: 3 }, { i: '2', j: 4 }, { i: '2', j: 5 }, { i: '2', j: 6 }, { i: '2', j: 7 }, { i: '2', j: 8 }, { i: '2', j: 9 }, { i: '2', j: 10 }, { i: '2', j: 11 } ], css_id: 'tinytable_css_3z2u8tcw4503uxby42us',}, 
+          { positions: [ { i: '1', j: 1 }, { i: '1', j: 2 }, { i: '1', j: 3 }, { i: '1', j: 4 }, { i: '1', j: 5 }, { i: '1', j: 6 }, { i: '1', j: 7 }, { i: '1', j: 8 }, { i: '1', j: 9 }, { i: '1', j: 10 }, { i: '1', j: 11 } ], css_id: 'tinytable_css_obazinbd3iy43ea2ogrm',}, 
+          { positions: [ { i: '0', j: 1 }, { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 }, { i: '0', j: 5 }, { i: '0', j: 6 }, { i: '0', j: 7 }, { i: '0', j: 8 }, { i: '0', j: 9 }, { i: '0', j: 10 }, { i: '0', j: 11 } ], css_id: 'tinytable_css_hmc579qwuu4d9j8bipyz',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  tableFns_5rwg4aij3yfkqqngttzq.styleCell(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.css">
+    <style>
+    /* tinytable css entries after */
+    #tinytable_5rwg4aij3yfkqqngttzq td.tinytable_css_3z2u8tcw4503uxby42us, #tinytable_5rwg4aij3yfkqqngttzq th.tinytable_css_3z2u8tcw4503uxby42us {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    #tinytable_5rwg4aij3yfkqqngttzq td.tinytable_css_obazinbd3iy43ea2ogrm, #tinytable_5rwg4aij3yfkqqngttzq th.tinytable_css_obazinbd3iy43ea2ogrm { text-align: left }
+    #tinytable_5rwg4aij3yfkqqngttzq td.tinytable_css_hmc579qwuu4d9j8bipyz, #tinytable_5rwg4aij3yfkqqngttzq th.tinytable_css_hmc579qwuu4d9j8bipyz {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    </style>
+    <div class="container">
+      <table class="tinytable" id="tinytable_5rwg4aij3yfkqqngttzq" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing='true'>
+        
+        <thead>
+              <tr>
+                <th scope="col" data-row="0" data-col="1">Variables</th>
+                <th scope="col" data-row="0" data-col="2">Coefficient</th>
+                <th scope="col" data-row="0" data-col="3">Std Error</th>
+                <th scope="col" data-row="0" data-col="4">t value</th>
+                <th scope="col" data-row="0" data-col="5">p value</th>
+                <th scope="col" data-row="0" data-col="6">Coef Sig</th>
+                <th scope="col" data-row="0" data-col="7">Odds_ratio</th>
+                <th scope="col" data-row="0" data-col="8">%</th>
+                <th scope="col" data-row="0" data-col="9">Odds Sig</th>
+                <th scope="col" data-row="0" data-col="10">CI_lower</th>
+                <th scope="col" data-row="0" data-col="11">CI_upper</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td data-row="1" data-col="1">(Intercept)</td>
+                  <td data-row="1" data-col="2">-0.02</td>
+                  <td data-row="1" data-col="3">0.00</td>
+                  <td data-row="1" data-col="4">-18.02</td>
+                  <td data-row="1" data-col="5">0.00</td>
+                  <td data-row="1" data-col="6">-0.024***</td>
+                  <td data-row="1" data-col="7">0.98</td>
+                  <td data-row="1" data-col="8">-2.36</td>
+                  <td data-row="1" data-col="9">0.976***</td>
+                  <td data-row="1" data-col="10">0.97</td>
+                  <td data-row="1" data-col="11">0.98</td>
+                </tr>
+                <tr>
+                  <td data-row="2" data-col="1">log(u)</td>
+                  <td data-row="2" data-col="2">0.02</td>
+                  <td data-row="2" data-col="3">0.00</td>
+                  <td data-row="2" data-col="4">40.92</td>
+                  <td data-row="2" data-col="5">0.00</td>
+                  <td data-row="2" data-col="6">0.024***</td>
+                  <td data-row="2" data-col="7">1.02</td>
+                  <td data-row="2" data-col="8">2.39</td>
+                  <td data-row="2" data-col="9">1.024***</td>
+                  <td data-row="2" data-col="10">1.02</td>
+                  <td data-row="2" data-col="11">1.03</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+<pre class="r"><code>x &lt;- rnorm(100)
+y &lt;- rpois(100, exp(1 + x))
+
+lm2 &lt;- glm(y ~ x, family = quasi(variance = &quot;mu&quot;, link = &quot;log&quot;))
+modelsummary::datasummary_df(odds_summary(lm2))</code></pre>
+<!-- preamble start -->
+
+    <script src="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.js"></script>
+
+    <script>
+      // Create table-specific functions using external factory
+      const tableFns_h3yyv210th6pfs332zo8 = TinyTable.createTableFunctions("tinytable_h3yyv210th6pfs332zo8");
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: '2', j: 1 }, { i: '2', j: 2 }, { i: '2', j: 3 }, { i: '2', j: 4 }, { i: '2', j: 5 }, { i: '2', j: 6 }, { i: '2', j: 7 }, { i: '2', j: 8 }, { i: '2', j: 9 }, { i: '2', j: 10 }, { i: '2', j: 11 } ], css_id: 'tinytable_css_k7aj6e1lcp7muqdjw09f',}, 
+          { positions: [ { i: '1', j: 1 }, { i: '1', j: 2 }, { i: '1', j: 3 }, { i: '1', j: 4 }, { i: '1', j: 5 }, { i: '1', j: 6 }, { i: '1', j: 7 }, { i: '1', j: 8 }, { i: '1', j: 9 }, { i: '1', j: 10 }, { i: '1', j: 11 } ], css_id: 'tinytable_css_af88f0b3xbeoebjvt00a',}, 
+          { positions: [ { i: '0', j: 1 }, { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 }, { i: '0', j: 5 }, { i: '0', j: 6 }, { i: '0', j: 7 }, { i: '0', j: 8 }, { i: '0', j: 9 }, { i: '0', j: 10 }, { i: '0', j: 11 } ], css_id: 'tinytable_css_zsmwgitlngqg8w25uhlr',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  tableFns_h3yyv210th6pfs332zo8.styleCell(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.css">
+    <style>
+    /* tinytable css entries after */
+    #tinytable_h3yyv210th6pfs332zo8 td.tinytable_css_k7aj6e1lcp7muqdjw09f, #tinytable_h3yyv210th6pfs332zo8 th.tinytable_css_k7aj6e1lcp7muqdjw09f {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    #tinytable_h3yyv210th6pfs332zo8 td.tinytable_css_af88f0b3xbeoebjvt00a, #tinytable_h3yyv210th6pfs332zo8 th.tinytable_css_af88f0b3xbeoebjvt00a { text-align: left }
+    #tinytable_h3yyv210th6pfs332zo8 td.tinytable_css_zsmwgitlngqg8w25uhlr, #tinytable_h3yyv210th6pfs332zo8 th.tinytable_css_zsmwgitlngqg8w25uhlr {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    </style>
+    <div class="container">
+      <table class="tinytable" id="tinytable_h3yyv210th6pfs332zo8" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing='true'>
+        
+        <thead>
+              <tr>
+                <th scope="col" data-row="0" data-col="1">Variables</th>
+                <th scope="col" data-row="0" data-col="2">Coefficient</th>
+                <th scope="col" data-row="0" data-col="3">Std Error</th>
+                <th scope="col" data-row="0" data-col="4">t value</th>
+                <th scope="col" data-row="0" data-col="5">p value</th>
+                <th scope="col" data-row="0" data-col="6">Coef Sig</th>
+                <th scope="col" data-row="0" data-col="7">Odds_ratio</th>
+                <th scope="col" data-row="0" data-col="8">%</th>
+                <th scope="col" data-row="0" data-col="9">Odds Sig</th>
+                <th scope="col" data-row="0" data-col="10">CI_lower</th>
+                <th scope="col" data-row="0" data-col="11">CI_upper</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td data-row="1" data-col="1">(Intercept)</td>
+                  <td data-row="1" data-col="2">1.00</td>
+                  <td data-row="1" data-col="3">0.07</td>
+                  <td data-row="1" data-col="4">13.94</td>
+                  <td data-row="1" data-col="5">0.00</td>
+                  <td data-row="1" data-col="6">1***</td>
+                  <td data-row="1" data-col="7">2.72</td>
+                  <td data-row="1" data-col="8">171.80</td>
+                  <td data-row="1" data-col="9">2.718***</td>
+                  <td data-row="1" data-col="10">2.35</td>
+                  <td data-row="1" data-col="11">3.12</td>
+                </tr>
+                <tr>
+                  <td data-row="2" data-col="1">x</td>
+                  <td data-row="2" data-col="2">1.02</td>
+                  <td data-row="2" data-col="3">0.06</td>
+                  <td data-row="2" data-col="4">18.29</td>
+                  <td data-row="2" data-col="5">0.00</td>
+                  <td data-row="2" data-col="6">1.023***</td>
+                  <td data-row="2" data-col="7">2.78</td>
+                  <td data-row="2" data-col="8">178.12</td>
+                  <td data-row="2" data-col="9">2.781***</td>
+                  <td data-row="2" data-col="10">2.50</td>
+                  <td data-row="2" data-col="11">3.11</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+<pre class="r"><code>lm3 &lt;- glm(y ~ x, family = poisson)
+modelsummary::datasummary_df(odds_summary(lm3))</code></pre>
+<!-- preamble start -->
+
+    <script src="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.js"></script>
+
+    <script>
+      // Create table-specific functions using external factory
+      const tableFns_fvmjvpyuz1gxnusc1ww6 = TinyTable.createTableFunctions("tinytable_fvmjvpyuz1gxnusc1ww6");
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: '2', j: 1 }, { i: '2', j: 2 }, { i: '2', j: 3 }, { i: '2', j: 4 }, { i: '2', j: 5 }, { i: '2', j: 6 }, { i: '2', j: 7 }, { i: '2', j: 8 }, { i: '2', j: 9 }, { i: '2', j: 10 }, { i: '2', j: 11 } ], css_id: 'tinytable_css_qurxqxijhmkh71iyjmsu',}, 
+          { positions: [ { i: '1', j: 1 }, { i: '1', j: 2 }, { i: '1', j: 3 }, { i: '1', j: 4 }, { i: '1', j: 5 }, { i: '1', j: 6 }, { i: '1', j: 7 }, { i: '1', j: 8 }, { i: '1', j: 9 }, { i: '1', j: 10 }, { i: '1', j: 11 } ], css_id: 'tinytable_css_csgtocohk7yotz0n8bc2',}, 
+          { positions: [ { i: '0', j: 1 }, { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 }, { i: '0', j: 5 }, { i: '0', j: 6 }, { i: '0', j: 7 }, { i: '0', j: 8 }, { i: '0', j: 9 }, { i: '0', j: 10 }, { i: '0', j: 11 } ], css_id: 'tinytable_css_puaf1w82upjooid93xq7',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  tableFns_fvmjvpyuz1gxnusc1ww6.styleCell(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.css">
+    <style>
+    /* tinytable css entries after */
+    #tinytable_fvmjvpyuz1gxnusc1ww6 td.tinytable_css_qurxqxijhmkh71iyjmsu, #tinytable_fvmjvpyuz1gxnusc1ww6 th.tinytable_css_qurxqxijhmkh71iyjmsu {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    #tinytable_fvmjvpyuz1gxnusc1ww6 td.tinytable_css_csgtocohk7yotz0n8bc2, #tinytable_fvmjvpyuz1gxnusc1ww6 th.tinytable_css_csgtocohk7yotz0n8bc2 { text-align: left }
+    #tinytable_fvmjvpyuz1gxnusc1ww6 td.tinytable_css_puaf1w82upjooid93xq7, #tinytable_fvmjvpyuz1gxnusc1ww6 th.tinytable_css_puaf1w82upjooid93xq7 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    </style>
+    <div class="container">
+      <table class="tinytable" id="tinytable_fvmjvpyuz1gxnusc1ww6" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing='true'>
+        
+        <thead>
+              <tr>
+                <th scope="col" data-row="0" data-col="1">Variables</th>
+                <th scope="col" data-row="0" data-col="2">Coefficient</th>
+                <th scope="col" data-row="0" data-col="3">Std Error</th>
+                <th scope="col" data-row="0" data-col="4">t value</th>
+                <th scope="col" data-row="0" data-col="5">p value</th>
+                <th scope="col" data-row="0" data-col="6">Coef Sig</th>
+                <th scope="col" data-row="0" data-col="7">Odds_ratio</th>
+                <th scope="col" data-row="0" data-col="8">%</th>
+                <th scope="col" data-row="0" data-col="9">Odds Sig</th>
+                <th scope="col" data-row="0" data-col="10">CI_lower</th>
+                <th scope="col" data-row="0" data-col="11">CI_upper</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td data-row="1" data-col="1">(Intercept)</td>
+                  <td data-row="1" data-col="2">1.00</td>
+                  <td data-row="1" data-col="3">0.07</td>
+                  <td data-row="1" data-col="4">14.03</td>
+                  <td data-row="1" data-col="5">0.00</td>
+                  <td data-row="1" data-col="6">1***</td>
+                  <td data-row="1" data-col="7">2.72</td>
+                  <td data-row="1" data-col="8">171.80</td>
+                  <td data-row="1" data-col="9">2.718***</td>
+                  <td data-row="1" data-col="10">2.35</td>
+                  <td data-row="1" data-col="11">3.11</td>
+                </tr>
+                <tr>
+                  <td data-row="2" data-col="1">x</td>
+                  <td data-row="2" data-col="2">1.02</td>
+                  <td data-row="2" data-col="3">0.06</td>
+                  <td data-row="2" data-col="4">18.40</td>
+                  <td data-row="2" data-col="5">0.00</td>
+                  <td data-row="2" data-col="6">1.023***</td>
+                  <td data-row="2" data-col="7">2.78</td>
+                  <td data-row="2" data-col="8">178.12</td>
+                  <td data-row="2" data-col="9">2.781***</td>
+                  <td data-row="2" data-col="10">2.50</td>
+                  <td data-row="2" data-col="11">3.11</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+</div>
+<div id="mlogit-models" class="section level2">
+<h2>mlogit models</h2>
+<pre class="r"><code>library(mlogit)
+data(&quot;Fishing&quot;, package = &quot;mlogit&quot;)
+Fish &lt;- dfidx(Fishing, varying = 2:9, shape = &quot;wide&quot;, choice = &quot;mode&quot;)
+
+## a pure &quot;conditional&quot; model
+mml &lt;- mlogit(mode ~ price + catch, data = Fish)
+modelsummary::datasummary_df(odds_summary(mml))</code></pre>
+<!-- preamble start -->
+
+    <script src="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.js"></script>
+
+    <script>
+      // Create table-specific functions using external factory
+      const tableFns_zu2utbultbpdfzon3gw3 = TinyTable.createTableFunctions("tinytable_zu2utbultbpdfzon3gw3");
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: '5', j: 1 }, { i: '5', j: 2 }, { i: '5', j: 3 }, { i: '5', j: 4 }, { i: '5', j: 5 }, { i: '5', j: 6 }, { i: '5', j: 7 }, { i: '5', j: 8 }, { i: '5', j: 9 }, { i: '5', j: 10 }, { i: '5', j: 11 } ], css_id: 'tinytable_css_tkhq8onty0lh5rrud8yp',}, 
+          { positions: [ { i: '1', j: 1 }, { i: '2', j: 1 }, { i: '3', j: 1 }, { i: '4', j: 1 }, { i: '1', j: 2 }, { i: '2', j: 2 }, { i: '3', j: 2 }, { i: '4', j: 2 }, { i: '1', j: 3 }, { i: '2', j: 3 }, { i: '3', j: 3 }, { i: '4', j: 3 }, { i: '1', j: 4 }, { i: '2', j: 4 }, { i: '3', j: 4 }, { i: '4', j: 4 }, { i: '1', j: 5 }, { i: '2', j: 5 }, { i: '3', j: 5 }, { i: '4', j: 5 }, { i: '1', j: 6 }, { i: '2', j: 6 }, { i: '3', j: 6 }, { i: '4', j: 6 }, { i: '1', j: 7 }, { i: '2', j: 7 }, { i: '3', j: 7 }, { i: '4', j: 7 }, { i: '1', j: 8 }, { i: '2', j: 8 }, { i: '3', j: 8 }, { i: '4', j: 8 }, { i: '1', j: 9 }, { i: '2', j: 9 }, { i: '3', j: 9 }, { i: '4', j: 9 }, { i: '1', j: 10 }, { i: '2', j: 10 }, { i: '3', j: 10 }, { i: '4', j: 10 }, { i: '1', j: 11 }, { i: '2', j: 11 }, { i: '3', j: 11 }, { i: '4', j: 11 } ], css_id: 'tinytable_css_vqouvcwlgw1bt058wcud',}, 
+          { positions: [ { i: '0', j: 1 }, { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 }, { i: '0', j: 5 }, { i: '0', j: 6 }, { i: '0', j: 7 }, { i: '0', j: 8 }, { i: '0', j: 9 }, { i: '0', j: 10 }, { i: '0', j: 11 } ], css_id: 'tinytable_css_7e0zvf3zo8ee7awj8t9c',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  tableFns_zu2utbultbpdfzon3gw3.styleCell(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.css">
+    <style>
+    /* tinytable css entries after */
+    #tinytable_zu2utbultbpdfzon3gw3 td.tinytable_css_tkhq8onty0lh5rrud8yp, #tinytable_zu2utbultbpdfzon3gw3 th.tinytable_css_tkhq8onty0lh5rrud8yp {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    #tinytable_zu2utbultbpdfzon3gw3 td.tinytable_css_vqouvcwlgw1bt058wcud, #tinytable_zu2utbultbpdfzon3gw3 th.tinytable_css_vqouvcwlgw1bt058wcud { text-align: left }
+    #tinytable_zu2utbultbpdfzon3gw3 td.tinytable_css_7e0zvf3zo8ee7awj8t9c, #tinytable_zu2utbultbpdfzon3gw3 th.tinytable_css_7e0zvf3zo8ee7awj8t9c {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    </style>
+    <div class="container">
+      <table class="tinytable" id="tinytable_zu2utbultbpdfzon3gw3" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing='true'>
+        
+        <thead>
+              <tr>
+                <th scope="col" data-row="0" data-col="1">Variables</th>
+                <th scope="col" data-row="0" data-col="2">Coefficient</th>
+                <th scope="col" data-row="0" data-col="3">Std Error</th>
+                <th scope="col" data-row="0" data-col="4">t value</th>
+                <th scope="col" data-row="0" data-col="5">p value</th>
+                <th scope="col" data-row="0" data-col="6">Coef Sig</th>
+                <th scope="col" data-row="0" data-col="7">Odds_ratio</th>
+                <th scope="col" data-row="0" data-col="8">%</th>
+                <th scope="col" data-row="0" data-col="9">Odds Sig</th>
+                <th scope="col" data-row="0" data-col="10">CI_lower</th>
+                <th scope="col" data-row="0" data-col="11">CI_upper</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td data-row="1" data-col="1">(Intercept):boat</td>
+                  <td data-row="1" data-col="2">0.87</td>
+                  <td data-row="1" data-col="3">0.11</td>
+                  <td data-row="1" data-col="4">7.64</td>
+                  <td data-row="1" data-col="5">0.00</td>
+                  <td data-row="1" data-col="6">0.871***</td>
+                  <td data-row="1" data-col="7">2.39</td>
+                  <td data-row="1" data-col="8">139.02</td>
+                  <td data-row="1" data-col="9">2.39***</td>
+                  <td data-row="1" data-col="10">1.91</td>
+                  <td data-row="1" data-col="11">2.99</td>
+                </tr>
+                <tr>
+                  <td data-row="2" data-col="1">(Intercept):charter</td>
+                  <td data-row="2" data-col="2">1.50</td>
+                  <td data-row="2" data-col="3">0.13</td>
+                  <td data-row="2" data-col="4">11.28</td>
+                  <td data-row="2" data-col="5">0.00</td>
+                  <td data-row="2" data-col="6">1.499***</td>
+                  <td data-row="2" data-col="7">4.48</td>
+                  <td data-row="2" data-col="8">347.67</td>
+                  <td data-row="2" data-col="9">4.477***</td>
+                  <td data-row="2" data-col="10">3.45</td>
+                  <td data-row="2" data-col="11">5.81</td>
+                </tr>
+                <tr>
+                  <td data-row="3" data-col="1">(Intercept):pier</td>
+                  <td data-row="3" data-col="2">0.31</td>
+                  <td data-row="3" data-col="3">0.11</td>
+                  <td data-row="3" data-col="4">2.68</td>
+                  <td data-row="3" data-col="5">0.01</td>
+                  <td data-row="3" data-col="6">0.307**</td>
+                  <td data-row="3" data-col="7">1.36</td>
+                  <td data-row="3" data-col="8">35.94</td>
+                  <td data-row="3" data-col="9">1.359**</td>
+                  <td data-row="3" data-col="10">1.09</td>
+                  <td data-row="3" data-col="11">1.70</td>
+                </tr>
+                <tr>
+                  <td data-row="4" data-col="1">price</td>
+                  <td data-row="4" data-col="2">-0.02</td>
+                  <td data-row="4" data-col="3">0.00</td>
+                  <td data-row="4" data-col="4">-14.54</td>
+                  <td data-row="4" data-col="5">0.00</td>
+                  <td data-row="4" data-col="6">-0.025***</td>
+                  <td data-row="4" data-col="7">0.98</td>
+                  <td data-row="4" data-col="8">-2.45</td>
+                  <td data-row="4" data-col="9">0.976***</td>
+                  <td data-row="4" data-col="10">0.97</td>
+                  <td data-row="4" data-col="11">0.98</td>
+                </tr>
+                <tr>
+                  <td data-row="5" data-col="1">catch</td>
+                  <td data-row="5" data-col="2">0.38</td>
+                  <td data-row="5" data-col="3">0.11</td>
+                  <td data-row="5" data-col="4">3.43</td>
+                  <td data-row="5" data-col="5">0.00</td>
+                  <td data-row="5" data-col="6">0.377***</td>
+                  <td data-row="5" data-col="7">1.46</td>
+                  <td data-row="5" data-col="8">45.82</td>
+                  <td data-row="5" data-col="9">1.458***</td>
+                  <td data-row="5" data-col="10">1.18</td>
+                  <td data-row="5" data-col="11">1.81</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+</div>
+<div id="multinomial-logistic-model" class="section level2">
+<h2>Multinomial Logistic model</h2>
+<p>For multinomial logistic regression, each of the measure is a data.frame, so the summary is a list of data frames. The summary is for each of the levels of the dependent variable.</p>
+<pre class="r"><code>library(nnet)
+
+tinom &lt;- multinom(Species ~ Petal.Length + Petal.Width + Sepal.Length
+  + Sepal.Width, trace = FALSE, data = iris)
+
+odds_summary(tinom)</code></pre>
+<pre><code>$coefficient
+     Variables versicolor  virginica
+1  (Intercept)  18.690374 -23.836276
+2 Petal.Length  14.244770  23.659779
+3  Petal.Width  -3.097684  15.135301
+4 Sepal.Length  -5.458424  -7.923634
+5  Sepal.Width  -8.707401 -15.370769
+
+$t_value
+   versicolor   virginica
+1  0.53445109 -0.66644166
+2  0.23665670  0.39128070
+3 -0.06809815  0.32950063
+4 -0.06072192 -0.08812701
+5 -0.05544649 -0.09782845
+
+$Odds_ratio
+     Variables   versicolor    virginica
+1  (Intercept) 1.309563e+08 4.446690e-11
+2 Petal.Length 1.536120e+06 1.885001e+10
+3  Petal.Width 4.515366e-02 3.742635e+06
+4 Sepal.Length 4.260265e-03 3.620841e-04
+5  Sepal.Width 1.653575e-04 2.111348e-07
+
+$Percent_odds
+     Variables    versicolor     virginica
+1  (Intercept)  1.309563e+10 -1.000000e+02
+2 Petal.Length  1.536119e+08  1.885001e+12
+3  Petal.Width -9.548463e+01  3.742634e+08
+4 Sepal.Length -9.957397e+01 -9.996379e+01
+5  Sepal.Width -9.998346e+01 -9.999998e+01
+
+$Coef_sig
+  versicolor virginica
+1      18.69   -23.836
+2     14.245     23.66
+3     -3.098    15.135
+4     -5.458    -7.924
+5     -8.707   -15.371
+
+$Odds_sig
+     versicolor      virginica
+1 130956302.531              0
+2   1536119.713 18850009278.36
+3         0.045    3742635.304
+4         0.004              0
+5             0              0
+
+$p_value
+  versicolor virginica
+1  0.5930295 0.5051288
+2  0.8129231 0.6955898
+3  0.9457075 0.7417773
+4  0.9515807 0.9297757
+5  0.9557828 0.9220685
+
+$Confident_interval
+     Variables Lower versicolor Upper versicolor Lower virginica
+1  (Intercept)        -49.85184         87.23259       -93.93730
+2 Petal.Length       -103.72880        132.21834       -94.85441
+3  Petal.Width        -92.25354         86.05818       -74.89380
+4 Sepal.Length       -181.64381        170.72696      -184.14699
+5  Sepal.Width       -316.50312        299.08832      -323.31956
+  Upper virginica
+1        46.26475
+2       142.17397
+3       105.16440
+4       168.29972
+5       292.57802</code></pre>
+</div>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>The odds_summary function represents a critical advancement in the practical interpretation of probabilistic estimates within the <em>Dyn4cast</em>
+environment. Its significance lies not in computation alone, but in converting statistical output into actionable knowledge. In econometric modelling systems, prediction without interpretation is incomplete. The odds_summary function closes that gap.</p>
+</div>
+<div id="attrition" class="section level1">
+<h1>Attrition</h1>
+<pre><code>cite this article as:
+
+Nmadu J (2025). odds_summary: Turning Probabilistic Estimates into Clear, Decision-Ready Insights. https://www.jobnmadu.com/r-blog/.
+
+To cite package &#39;Dyn4cast&#39; in publications use:
+
+  Nmadu J (2025). _Dyn4cast: Dynamic Modeling and Machine Learning
+  Environment_. R package version 11.11.26,
+  &lt;https://github.com/JobNmadu/Dyn4cast&gt;.
+
+A BibTeX entry for LaTeX users is
+
+  @Manual{,
+    title = {_Dyn4cast: Dynamic Modeling and Machine Learning Environment_},
+    author = {Job Nmadu},
+    year = {2025},
+    note = {R package version 11.11.26},
+    url = {https://github.com/JobNmadu/Dyn4cast},
+  }</code></pre>
+<p>Welcome to Data Science and Machine Learning!</p>
+</div>
