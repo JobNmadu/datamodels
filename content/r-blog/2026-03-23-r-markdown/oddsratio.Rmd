@@ -1,5 +1,5 @@
 ---
-title: "_odds_summary_: Turning Probabilistic Estimates into Clear, Decision-Ready Insights"
+title: "odds_summary: Turning Probabilistic Estimates into Clear, Decision-Ready Insights"
 output:
   prettydoc::html_pretty:
     theme: cayman #tactile, architect, leonids, hpstr
