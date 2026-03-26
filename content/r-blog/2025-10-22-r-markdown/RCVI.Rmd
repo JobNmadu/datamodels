@@ -198,7 +198,7 @@ iii <- index_construction(garrett_data)
 iii$Index
 ```
 
-# Attrition
+# Attribution
 
 ```
 cite this article as:

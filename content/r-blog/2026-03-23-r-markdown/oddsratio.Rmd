@@ -160,7 +160,7 @@ The odds_summary function represents a critical advancement in the practical int
 environment. Its significance lies not in computation alone, but in converting statistical output into actionable knowledge. In econometric modelling systems, prediction without interpretation is incomplete. The odds_summary function closes that gap.
 
 
-# Attrition
+# Attribution
 
 ```
 cite this article as:
