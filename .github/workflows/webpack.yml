@@ -12,17 +12,17 @@ jobs:
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     strategy:
       matrix:
         node-version: [24.x]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
         node-version: ${{ matrix.node-version }}
 
