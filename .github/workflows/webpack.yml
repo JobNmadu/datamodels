@@ -12,15 +12,16 @@ jobs:
 
     strategy:
       matrix:
-        node: [24, 25]
-    name: Node ${{ matrix.node }}
+        node-version: [24, 25]
     
+    name: Node ${{ matrix.node }}
     steps:
       - uses: actions/checkout@v6
       - name: Setup node
         uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node }}
+
 
     - name: Build
       run: |
