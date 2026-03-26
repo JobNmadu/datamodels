@@ -107,7 +107,7 @@ fff <- model_factors(data = dat, DATA = Data)
 ### Resilience capacity 
 
 ```{r}
-fff$`Resilence capacity`
+fff$`Resilience capacity`
 ```
 
 To obtain Resilience capacity, the function is run for each component.
@@ -141,7 +141,7 @@ rrr <- relative_likert(garrett_data, Ranks = 9, Option = "sccore")
 ### Adaptive capacity
 
 ```{r}
-rrr$lik_col
+rrr$`Vector-of-indices`
 ```
 
 
@@ -171,7 +171,7 @@ pivot_longer(cols = everything()) %>%
 ### Adaptive capacity
 
 ```{r}
-ddd$lik_col
+ddd$`Vector-of-indices`
 ```
 
 ## Estimation of Exposure or Sensitivity
