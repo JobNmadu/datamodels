@@ -104,7 +104,7 @@ dat <- fa(Data, nfactors = lll[["nfact"]], rotate = "varimax",fm = "minres")
 fff <- model_factors(data = dat, DATA = Data)
 ```
 
-### Resiliece capacity 
+### Resilience capacity 
 
 ```{r}
 fff$`Resilence capacity`
