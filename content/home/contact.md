@@ -12,10 +12,8 @@ subtitle = "Connect with me"
   autolink = true
 
 # Email form provider
-  form:
-    provider: formspree
-    formspree:
-      id: xpqorbvv
+  form = formspree
+  id = xpqorbvv
 
 # Email form provider
 #   0: Disable email form
