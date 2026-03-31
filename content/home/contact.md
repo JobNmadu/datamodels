@@ -11,7 +11,7 @@ subtitle = "Connect with me"
 # Automatically link email and phone?
 autolink = true
 
-| # Email form provider
+# Email form provider
   form:
     provider: formspree
     formspree:
