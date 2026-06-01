@@ -30,7 +30,7 @@ tags:
 - income grouping
 - social and economic development
 - causal inference
-title: "Interplay between religious affinity andglobal socio-economic development"
+title: "Interplay between religious affinity and global socio-economic development"
 ---
 {{% alert note %}}
 Click the *Cite* button above to demo the feature to enable visitors to import publication metadata into their reference management software.
