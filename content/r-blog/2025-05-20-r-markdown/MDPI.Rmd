@@ -239,4 +239,28 @@ dm <- list(d1 = c("d_cm"),
 
 ```
 
+# Attribution
+
+```
+cite this article as:
+
+Nmadu J (2025). Multidimensional poverty evaluation at national, sub-national and factor levels. https://www.jobnmadu.com/r-blog/.
+
+To cite package 'Dyn4cast' in publications use:
+
+  Nmadu J (2025). _Dyn4cast: Dynamic Modeling and Machine Learning
+  Environment_. R package version 11.11.26,
+  <https://github.com/JobNmadu/Dyn4cast>.
+
+A BibTeX entry for LaTeX users is
+
+  @Manual{,
+    title = {_Dyn4cast: Dynamic Modeling and Machine Learning Environment_},
+    author = {Job Nmadu},
+    year = {2025},
+    note = {R package version 11.11.26},
+    url = {https://github.com/JobNmadu/Dyn4cast},
+  }
+```
+
 Welcome to the world of easy Data Science and easy Machine Learning!
