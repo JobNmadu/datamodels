@@ -30,14 +30,21 @@ knitr::opts_chunk$set(echo = TRUE)
 <img src="../figures/logo.png" align="center" alt="" width="150" height="150" /> 
 
 
-The package is not yet on [CRAN](https://cran.r-project.org/), if it was, it would be possible to install the released version of `Dyn4cast` from [CRAN](https://cran.r-project.org/) in future. The canonical form for [CRAN](https://cran.r-project.org/) is:
+The released version of _Dyn4cast_ can be installed from [CRAN](https://cran.r-project.org/web/packages/Dyn4cast/index.html). The canonical form for  [CRAN](https://cran.r-project.org/web/packages/Dyn4cast/index.html) is:
 
-```r 
+```
 install.packages("Dyn4cast")
 ```
 
-The package is in the development version on [GitHub](https://github.com/JobNmadu/Dyn4cast) but have undergone rigorous checks. So far all the functions are working perfectly well. Install it with:
+The development version is available now and can be installed from [GitHub](https://github.com/JobNmadu/Dyn4cast) with:
 
-```r
-remotes::install_github("JobNmadu/Dyn4cast")
+``` r
+# install.packages("devtools")
+pak::pak("JobNmadu/Dyn4cast")
+```
+
+The development version can also be installed through [r-universe](https://jobnmadu.r-universe.dev/Dyn4cast). Use the form:
+
+``` r
+install.packages("Dyn4cast", repos = c("https://jobnmadu.r-universe.dev", "https://cloud.r-project.org"))
 ```
