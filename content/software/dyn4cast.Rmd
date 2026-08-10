@@ -4,7 +4,7 @@ description: |
   The estimation of regressions models, their prediction and essembles are used to forecast COVID-19 distribution in Nigeria
 author:
   - name: Job Nmadu
-    url: https://jobnmadu.rbind.io/
+    url: https://jobnmadu.com/
 date: "2022-09-01T01:00:00Z"
 output:
   html_document: default
