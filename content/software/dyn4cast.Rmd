@@ -6,15 +6,7 @@ author:
   - name: Job Nmadu
     url: https://jobnmadu.com/
 date: "2022-09-01T01:00:00Z"
-output:
-  html_document: default
-  prettydoc::html_pretty:
-    theme: cayman #tactile, architect, leonids, hpstr
-    highlight: vignette #github
-    math: katex #latex
-  word_document: default
-  pdf_document: 
-    latex_engine: xelatex
+output: github_document
 categories:
   - R
   - Dynamic Forecastng
