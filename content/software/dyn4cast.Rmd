@@ -6,25 +6,7 @@ author:
   - name: Job Nmadu
     url: https://jobnmadu.com/
 date: "2022-09-01T01:00:00Z"
-output:
-  html_document:
-    theme: united 
-    highlight: tango
-    code_folding: show    
-    toc: true           
-    toc_depth: 3       
-    toc_float: true     
-  pdf_document: 
-    latex_engine: xelatex
-  word_document: default
-  prettydoc::html_pretty:
-    theme: cayman #tactile, architect, leonids, hpstr
-    highlight: vignette #github
-    math: katex #latex
-categories:
-  - R
-  - Dynamic Forecastng
-slug: Dyn4cast
+output: github_document
 summary: Time-varying dynamic forecast,  machine learning metrics, linear systems transformation, Mallow's Cp of economic data for national development.
 tags: [machine learning, time series, regression model, time variant forecasting, Mallows Cp]
 ---
