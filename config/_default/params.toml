@@ -97,10 +97,10 @@ contact_links = [
 #   1: Google Maps
 #   2: OpenStreetMap (Mapnik)
 #   3: OpenStreetMap (Mapbox)
-map = 3
+map = 1
 #map_api_key = "AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"
-#map_api_key = "AIzaSyDFsR9C9F36iPQuxQ3dCoSSBWP2pjMnVMI"
-map_api_key = "pk.eyJ1Ijoiam9iLW1hcGJveCIsImEiOiJjbWFkMW9qbjgwYTdmMndvbHIwcG82b3QxIn0.n9iH_O_Ia8HjIbZ7JysUig"
+map_api_key = "AIzaSyDFsR9C9F36iPQuxQ3dCoSSBWP2pjMnVMI"
+#map_api_key = "pk.eyJ1Ijoiam9iLW1hcGJveCIsImEiOiJjbWFkMW9qbjgwYTdmMndvbHIwcG82b3QxIn0.n9iH_O_Ia8HjIbZ7JysUig"
 latitude = "9.533023"
 longitude = "6.451892"
 # latitude = "9.534315693171378"
